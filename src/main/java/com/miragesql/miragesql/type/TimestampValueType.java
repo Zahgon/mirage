@@ -8,33 +8,27 @@ import java.sql.Timestamp;
 
 public class TimestampValueType extends AbstractValueType<Timestamp> {
 
-
     public TimestampValueType() {
         super(Timestamp.class);
     }
 
     public Timestamp get(Class<? extends Timestamp> type, ResultSet rs, int columnIndex) throws SQLException {
-        return rs.getTimestamp(columnIndex);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Timestamp get(Class<? extends Timestamp> type, ResultSet rs, String columnName) throws SQLException {
-        return rs.getTimestamp(columnName);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    public void set(Class<? extends Timestamp> type, PreparedStatement stmt, Timestamp value,
-            int index) throws SQLException {
-        if (value == null){
-            setNull(type, stmt, index);
-        } else {
-            stmt.setTimestamp(index, value);
-        }
+    public void set(Class<? extends Timestamp> type, PreparedStatement stmt, Timestamp value, int index) throws SQLException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Timestamp get(Class<? extends Timestamp> type, CallableStatement cs, int index) throws SQLException {
-        return cs.getTimestamp(index);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Timestamp get(Class<? extends Timestamp> type, CallableStatement cs, String parameterName) throws SQLException {
-        return cs.getTimestamp(parameterName);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

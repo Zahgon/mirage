@@ -15,7 +15,6 @@
  */
 package com.miragesql.miragesql.parser;
 
-
 /**
  * {@link Node} holding the SQL string itself.
  *
@@ -33,15 +32,15 @@ public class SqlNode extends AbstractNode {
      * @return the sql string
      */
     public String getSql() {
-        return sql;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void accept(SqlContext ctx) {
-        ctx.addSql(sql);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return "SqlNode [sql=" + sql + ", children=" + children + "]";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

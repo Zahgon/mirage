@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
 import ognl.OgnlRuntime;
 
 /**
@@ -30,7 +29,6 @@ import ognl.OgnlRuntime;
 public class SqlContextImpl implements SqlContext {
 
     // private static Logger logger = Logger.getLogger(SqlContextImpl.class);
-
     // CaseInsensitiveMap
     private Map<String, Object> args = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
 
@@ -48,8 +46,7 @@ public class SqlContextImpl implements SqlContext {
     private SqlContext parent;
 
     static {
-        OgnlRuntime.setPropertyAccessor(SqlContext.class,
-                new SqlContextPropertyAccessor());
+        OgnlRuntime.setPropertyAccessor(SqlContext.class, new SqlContextPropertyAccessor());
     }
 
     public SqlContextImpl() {
@@ -65,102 +62,63 @@ public class SqlContextImpl implements SqlContext {
         enabled = false;
     }
 
-//	@Override
+    //	@Override
     public Object getArg(String name) {
-        if (args.containsKey(name)) {
-            return args.get(name);
-        } else if (parent != null) {
-            return parent.getArg(name);
-        } else {
-//			if (args.size() == 1) {
-//				return args.get(0);
-//			}
-            // logger.log("WSSR0010", new Object[] { name });
-            return null;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
+    //	@Override
     public boolean hasArg(String name) {
-        if (args.containsKey(name)) {
-            return true;
-        } else if (parent != null) {
-            return parent.hasArg(name);
-        }
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
+    //	@Override
     public Class<?> getArgType(String name) {
-        if (argTypes.containsKey(name)) {
-            return (Class<?>) argTypes.get(name);
-        } else if (parent != null) {
-            return parent.getArgType(name);
-        } else {
-//			if (argTypes.size() == 1) {
-//				return (Class<?>) argTypes.get(0);
-//			}
-            // logger.log("WSSR0010", new Object[] { name });
-            return null;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
+    //	@Override
     public void addArg(String name, Object arg, Class<?> argType) {
-        args.put(name, arg);
-        argTypes.put(name, argType);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
+    //	@Override
     public String getSql() {
-        return sqlBuf.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
+    //	@Override
     public Object[] getBindVariables() {
-        return bindVariables.toArray(new Object[bindVariables.size()]);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
+    //	@Override
     public Class<?>[] getBindVariableTypes() {
-        return bindVariableTypes.toArray(new Class<?>[bindVariableTypes.size()]);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
+    //	@Override
     public SqlContext addSql(String sql) {
-        sqlBuf.append(sql);
-        return this;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
-    public SqlContext addSql(String sql, Object bindVariable,
-            Class<?> bindVariableType) {
-
-        sqlBuf.append(sql);
-        bindVariables.add(bindVariable);
-        bindVariableTypes.add(bindVariableType);
-        return this;
+    //	@Override
+    public SqlContext addSql(String sql, Object bindVariable, Class<?> bindVariableType) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
-    public SqlContext addSql(String sql, Object[] bindVariables,
-            Class<?>[] bindVariableTypes) {
-
-        sqlBuf.append(sql);
-        for (int i = 0; i < bindVariables.length; ++i) {
-            this.bindVariables.add(bindVariables[i]);
-            this.bindVariableTypes.add(bindVariableTypes[i]);
-        }
-        return this;
+    //	@Override
+    public SqlContext addSql(String sql, Object[] bindVariables, Class<?>[] bindVariableTypes) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
+    //	@Override
     public boolean isEnabled() {
-        return enabled;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
+    //	@Override
     public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

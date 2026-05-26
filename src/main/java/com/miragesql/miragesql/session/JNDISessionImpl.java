@@ -6,7 +6,6 @@ import com.miragesql.miragesql.exception.ConfigurationException;
 import com.miragesql.miragesql.exception.SessionException;
 import com.miragesql.miragesql.provider.DataSourceConnectionProvider;
 import com.miragesql.miragesql.provider.JNDIDataSourceConnectionProvider;
-
 import javax.naming.NamingException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -22,7 +21,9 @@ public class JNDISessionImpl implements Session {
     private static final Logger logger = LoggerFactory.getLogger(JNDISessionImpl.class);
 
     private SqlManager sqlManager;
+
     JNDIDataSourceConnectionProvider provider;
+
     private ThreadLocal<Boolean> rollbackOnly = new ThreadLocal<>();
 
     /**
@@ -41,85 +42,68 @@ public class JNDISessionImpl implements Session {
     public JNDISessionImpl(Properties properties) {
         String jndiName = properties.getProperty("jndi.name");
         String dialectUrl = properties.getProperty("db.dialect");
-
         sqlManager = new SqlManagerImpl();
         sqlManager.setDialect(DialectAutoSelector.getDialect(dialectUrl));
-
         try {
             provider = new JNDIDataSourceConnectionProvider(jndiName);
         } catch (NamingException e) {
             throw new ConfigurationException(e);
         }
-
         sqlManager.setConnectionProvider(provider);
-
         String cache = properties.getProperty("sql.cache");
-        if("true".equals(cache)){
+        if ("true".equals(cache)) {
             ((SqlManagerImpl) sqlManager).setCacheMode(true);
         } else {
             ((SqlManagerImpl) sqlManager).setCacheMode(false);
         }
     }
 
-    /** {@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public void begin() {
-        if(logger.isInfoEnabled()){
-            logger.info("Begin transaction.");
-        }
-        try {
-            provider.getConnection();
-            Connection conn = provider.getConnection();
-            conn.setAutoCommit(false);
-            // provider.setConnection(conn);
-        } catch (SQLException ex){
-            throw new SessionException("Failed to begin transaction.", ex);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** {@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public void commit() {
-        if(logger.isInfoEnabled()){
-            logger.info("Commit transaction.");
-        }
-        try {
-            provider.getConnection().commit();
-        } catch (SQLException ex){
-            throw new SessionException("Failed to commit transaction.", ex);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** {@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public void rollback() {
-        if(logger.isInfoEnabled()){
-            logger.info("Rollback transaction.");
-        }
-        try {
-            provider.getConnection().rollback();
-        } catch (SQLException ex){
-            throw new SessionException("Failed to rollback transaction.", ex);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** {@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public void release() {
-        this.rollbackOnly.remove();
-        if(provider instanceof DataSourceConnectionProvider){
-            ((DataSourceConnectionProvider) provider).releaseConnection();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** {@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public void setRollbackOnly() {
-        this.rollbackOnly.set(true);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** {@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public boolean isRollbackOnly() {
-        return this.rollbackOnly.get() != null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /** {@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public SqlManager getSqlManager() {
-        return sqlManager;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

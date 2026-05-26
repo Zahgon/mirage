@@ -31,11 +31,11 @@ import java.util.Map;
  */
 public class FieldPropertyExtractor implements PropertyExtractor {
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public Map<String, PropertyWrapper> extractProperties(Class<?> clazz) {
-        Map<String, PropertyWrapper> map = new LinkedHashMap<>();
-        extractProperties0(clazz, map);
-        return map;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void extractProperties0(Class<?> clazz, Map<String, PropertyWrapper> map) {
@@ -46,9 +46,7 @@ public class FieldPropertyExtractor implements PropertyExtractor {
         for (Field field : fields) {
             field.setAccessible(true);
             int modifiers = field.getModifiers();
-            if (map.containsKey(field.getName()) == false
-                    && Modifier.isStatic(modifiers) == false
-                    && Modifier.isFinal(modifiers) == false) {
+            if (map.containsKey(field.getName()) == false && Modifier.isStatic(modifiers) == false && Modifier.isFinal(modifiers) == false) {
                 map.put(field.getName(), new ReadableWritablePropertyWrapperImpl(field.getName(), null, null, field));
             }
         }
@@ -63,12 +61,12 @@ public class FieldPropertyExtractor implements PropertyExtractor {
 
         @Override
         public boolean isReadable() {
-            return true;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean isWritable() {
-            return true;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 }

@@ -2,16 +2,19 @@ package com.miragesql.miragesql.dialect;
 
 public class H2Dialect extends StandardDialect {
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getName() {
-        return "h2";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getSequenceSql(String sequenceName) {
-        return String.format("SELECT NEXTVAL('%s')", sequenceName);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -2,10 +2,11 @@ package com.miragesql.miragesql.dialect;
 
 public class DerbyDialect extends StandardDialect {
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getName() {
-        return "derby";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -3,7 +3,6 @@ package com.miragesql.miragesql.provider;
 import java.sql.Connection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.miragesql.miragesql.util.JdbcUtil;
 
 /**
@@ -17,27 +16,19 @@ public class DefaultConnectionProvider implements ConnectionProvider {
 
     private ThreadLocal<Connection> threadLocal = new ThreadLocal<>();
 
-    public void setConnection(Connection conn){
-        threadLocal.set(conn);
+    public void setConnection(Connection conn) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    public void releaseConnection(){
-        Connection conn = threadLocal.get();
-        if(conn != null){
-            JdbcUtil.close(conn);
-            threadLocal.remove();
-
-            logger.info("Connection is released.");
-
-        } else {
-            logger.info("Connection is not used.");
-        }
+    public void releaseConnection() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
-    /**{@inheritDoc}*/
+    //	@Override
+    /**
+     * {@inheritDoc}
+     */
     public Connection getConnection() {
-        return threadLocal.get();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

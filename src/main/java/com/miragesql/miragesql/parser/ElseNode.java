@@ -27,12 +27,11 @@ public class ElseNode extends ContainerNode {
 
     @Override
     public void accept(SqlContext ctx) {
-        super.accept(ctx);
-        ctx.setEnabled(true);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return "ElseNode [children=" + children + "]";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

@@ -16,12 +16,11 @@
  */
 package com.miragesql.miragesql.type.enumerate;
 
-import java.sql.CallableStatement; 
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-
 import com.miragesql.miragesql.type.ValueType;
 import com.miragesql.miragesql.util.AnnotationUtils;
 import com.miragesql.miragesql.annotation.Enumerated;
@@ -30,16 +29,13 @@ import com.miragesql.miragesql.bean.PropertyDesc;
 
 /**
  * {@link Enum}型を {@link String}型としてDBに保存するための {@link ValueType}実装クラス。
- * 
+ *
  * @since 1.0
  * @author daisuke
  */
 public class EnumStringValueType implements ValueType<Object> {
 
-    @SuppressWarnings({
-        "rawtypes",
-        "unchecked"
-    })
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     private static Enum<? extends Object> toEnum(Class type, String name) {
         try {
             return Enum.valueOf(type, name);
@@ -49,63 +45,42 @@ public class EnumStringValueType implements ValueType<Object> {
     }
 
     public Enum<? extends Object> get(Class<? extends Object> type, CallableStatement cs, int index) throws SQLException {
-        String name = cs.getString(index);
-        return name == null ? null : toEnum(type, name);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Enum<? extends Object> get(Class<? extends Object> type, CallableStatement cs, String parameterName) throws SQLException {
-        String name = cs.getString(parameterName);
-        return name == null ? null : toEnum(type, name);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Enum<? extends Object> get(Class<? extends Object> type, ResultSet rs, int columnIndex) throws SQLException {
-        String name = rs.getString(columnIndex);
-        return name == null ? null : toEnum(type, name);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Enum<? extends Object> get(Class<? extends Object> type, ResultSet rs, String columnName) throws SQLException {
-        String name = rs.getString(columnName);
-        return name == null ? null : toEnum(type, name);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Class<? extends Object> getJavaType(int sqlType) {
-        return String.class;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public boolean isSupport(Class<?> type, PropertyDesc propertyDesc) {
-        if (Enum.class.isAssignableFrom(type) == false) {
-            return false;
-        }
-        if(propertyDesc != null) {
-            Enumerated property = propertyDesc.getAnnotation(Enumerated.class);
-            if(property != null && property.value() == EnumType.STRING) {
-                return true;
-            }
-        }
-        Enumerated fieldType = AnnotationUtils.findAnnotation(type, Enumerated.class);
-        if (fieldType != null && fieldType.value() == EnumType.STRING) {
-            return true;
-        }
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void registerOutParameter(Class<?> type, CallableStatement cs, int index) throws SQLException {
-        cs.registerOutParameter(index, Types.VARCHAR);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void registerOutParameter(Class<?> type, CallableStatement cs, String parameterName) throws SQLException {
-        cs.registerOutParameter(parameterName, Types.VARCHAR);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void set(Class<? extends Object> type, PreparedStatement stmt, Object value, int index) throws SQLException {
-        if (value == null) {
-            stmt.setNull(index, Types.VARCHAR);
-        } else {
-            stmt.setString(index, ((Enum<?>) value).name());
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Object getDefaultValue() {
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

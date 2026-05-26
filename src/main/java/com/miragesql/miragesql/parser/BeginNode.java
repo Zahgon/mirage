@@ -27,16 +27,11 @@ public class BeginNode extends ContainerNode {
 
     @Override
     public void accept(SqlContext ctx) {
-        SqlContext childCtx = new SqlContextImpl(ctx);
-        super.accept(childCtx);
-        if (childCtx.isEnabled()) {
-            ctx.addSql(childCtx.getSql(), childCtx.getBindVariables(), childCtx
-                    .getBindVariableTypes());
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return "BeginNode [children=" + children + "]";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

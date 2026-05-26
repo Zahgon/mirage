@@ -2,7 +2,6 @@ package com.miragesql.miragesql.exception;
 
 import java.io.IOException;
 
-
 @SuppressWarnings("serial")
 public class IORuntimeException extends RuntimeException {
 
@@ -16,6 +15,6 @@ public class IORuntimeException extends RuntimeException {
 
     @Override
     public IOException getCause() {
-        return (IOException) super.getCause();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

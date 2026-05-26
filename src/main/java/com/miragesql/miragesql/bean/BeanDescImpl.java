@@ -6,111 +6,119 @@ import java.util.*;
 public class BeanDescImpl implements BeanDesc {
 
     private Class<?> clazz;
+
     private PropertyDesc[] propertyArray;
+
     // keep the order of original properties
     private final Map<String, PropertyDesc> propertyMap = Collections.synchronizedMap(new LinkedHashMap<>());
 
-    public BeanDescImpl(Class<?> clazz, Map<String, PropertyWrapper> map){
+    public BeanDescImpl(Class<?> clazz, Map<String, PropertyWrapper> map) {
         this.clazz = clazz;
-
         List<PropertyDesc> list = new ArrayList<>();
-
-        for(PropertyWrapper propertyWrapper: map.values()){
+        for (PropertyWrapper propertyWrapper : map.values()) {
             PropertyDesc pd = new PropertyDescImpl(propertyWrapper);
-
-//			if(info.field == null){
-//				pd = new PropertyDescImpl(this, info.name, info.type, null, info.getterMethod, info.setterMethod);
-//			} else {
-//				pd = new PropertyDescImpl(this, info.name, info.type, info.propertyWrapper);
-//			}
-
+            //			if(info.field == null){
+            //				pd = new PropertyDescImpl(this, info.name, info.type, null, info.getterMethod, info.setterMethod);
+            //			} else {
+            //				pd = new PropertyDescImpl(this, info.name, info.type, info.propertyWrapper);
+            //			}
             list.add(pd);
             // this.propertyMap.put(pd.getPropertyName(), pd);
-            addToMap(pd.getPropertyName(),pd);
+            addToMap(pd.getPropertyName(), pd);
         }
-
-//		// for Scala classes
-//		while(clazz != null){
-//			Field[] declaredFields = clazz.getDeclaredFields();
-//			for(Field field: declaredFields){
-//				if(Modifier.isPublic(field.getModifiers())){
-//					continue;
-//				}
-//				String propertyName = field.getName();
-//				try {
-//					Method method = clazz.getMethod(propertyName, new Class<?>[0]);
-//					PropertyInfo info = map.get(propertyName);
-//					if(info == null){
-//						info = new PropertyInfo();
-//						info.name = propertyName;
-//						info.getterMethod = method;
-//						info.type = method.getReturnType();
-//						map.put(propertyName, info);
-//					} else if(info.type == method.getReturnType()){
-//						info.getterMethod = method;
-//					}
-//				} catch(NoSuchMethodException e){
-//				}
-//				try {
-//					Method method = clazz.getMethod(propertyName + "_$eq", field.getType());
-//					PropertyInfo info = map.get(propertyName);
-//					if(info == null){
-//						info = new PropertyInfo();
-//						info.name = propertyName;
-//						info.setterMethod = method;
-//						info.type = method.getParameterTypes()[0];
-//						map.put(propertyName, info);
-//					} else if(info.type == method.getParameterTypes()[0]){
-//						info.setterMethod = method;
-//					}
-//				} catch(NoSuchMethodException e){
-//				}
-//			}
-//			clazz = clazz.getSuperclass();
-//		}
-
+        //		// for Scala classes
+        //		while(clazz != null){
+        //			Field[] declaredFields = clazz.getDeclaredFields();
+        //			for(Field field: declaredFields){
+        //				if(Modifier.isPublic(field.getModifiers())){
+        //					continue;
+        //				}
+        //				String propertyName = field.getName();
+        //				try {
+        //					Method method = clazz.getMethod(propertyName, new Class<?>[0]);
+        //					PropertyInfo info = map.get(propertyName);
+        //					if(info == null){
+        //						info = new PropertyInfo();
+        //						info.name = propertyName;
+        //						info.getterMethod = method;
+        //						info.type = method.getReturnType();
+        //						map.put(propertyName, info);
+        //					} else if(info.type == method.getReturnType()){
+        //						info.getterMethod = method;
+        //					}
+        //				} catch(NoSuchMethodException e){
+        //				}
+        //				try {
+        //					Method method = clazz.getMethod(propertyName + "_$eq", field.getType());
+        //					PropertyInfo info = map.get(propertyName);
+        //					if(info == null){
+        //						info = new PropertyInfo();
+        //						info.name = propertyName;
+        //						info.setterMethod = method;
+        //						info.type = method.getParameterTypes()[0];
+        //						map.put(propertyName, info);
+        //					} else if(info.type == method.getParameterTypes()[0]){
+        //						info.setterMethod = method;
+        //					}
+        //				} catch(NoSuchMethodException e){
+        //				}
+        //			}
+        //			clazz = clazz.getSuperclass();
+        //		}
         this.propertyArray = list.toArray(new PropertyDesc[list.size()]);
     }
 
-//	@Override
-    /**{@inheritDoc}*/
-    public Class<?> getType(){
-        return clazz;
+    //	@Override
+    /**
+     * {@inheritDoc}
+     */
+    public Class<?> getType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
-    /**{@inheritDoc}*/
-    public PropertyDesc getPropertyDesc(String name){
-        return propertyMap.get(name);
+    //	@Override
+    /**
+     * {@inheritDoc}
+     */
+    public PropertyDesc getPropertyDesc(String name) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
-    /**{@inheritDoc}*/
-    public int getPropertyDescSize(){
-        return propertyArray.length;
+    //	@Override
+    /**
+     * {@inheritDoc}
+     */
+    public int getPropertyDescSize() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
-    /**{@inheritDoc}*/
-    public PropertyDesc getPropertyDesc(int i){
-        return propertyArray[i];
+    //	@Override
+    /**
+     * {@inheritDoc}
+     */
+    public PropertyDesc getPropertyDesc(int i) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
-    /**{@inheritDoc}*/
+    //	@Override
+    /**
+     * {@inheritDoc}
+     */
     public <T extends Annotation> T getAnnotation(Class<T> type) {
-        return clazz.getAnnotation(type);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
-        return super.toString() + "[" + (clazz == null ? null : clazz.getSimpleName()) + "]";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private void addToMap(String propertyName, PropertyDesc pd) {
         synchronized (propertyMap) {
-            propertyMap.put(propertyName,pd);
+            propertyMap.put(propertyName, pd);
         }
     }
 }

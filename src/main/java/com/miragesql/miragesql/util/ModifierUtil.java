@@ -9,15 +9,14 @@ public class ModifierUtil {
     }
 
     public static boolean isStatic(int modifier) {
-        return Modifier.isStatic(modifier);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public static boolean isFinal(int modifier) {
-        return Modifier.isFinal(modifier);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    
+
     public static boolean isInstanceField(Field field) {
-        int m = field.getModifiers();
-        return !isStatic(m) && !isFinal(m);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

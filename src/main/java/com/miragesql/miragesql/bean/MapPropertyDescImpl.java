@@ -7,72 +7,93 @@ import java.util.Map;
 public class MapPropertyDescImpl implements PropertyDesc {
 
     private Object value;
+
     private String propertyName;
 
-    public MapPropertyDescImpl(String propertyName, Object value){
+    public MapPropertyDescImpl(String propertyName, Object value) {
         this.propertyName = propertyName;
         this.value = value;
     }
 
-//	@Override
-    /**{@inheritDoc}*/
+    //	@Override
+    /**
+     * {@inheritDoc}
+     */
     public <T extends Annotation> T getAnnotation(Class<T> type) {
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
-    /**{@inheritDoc}*/
+    //	@Override
+    /**
+     * {@inheritDoc}
+     */
     public Field getField() {
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
-    /**{@inheritDoc}*/
+    //	@Override
+    /**
+     * {@inheritDoc}
+     */
     public String getPropertyName() {
-        return propertyName;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
-    /**{@inheritDoc}*/
+    //	@Override
+    /**
+     * {@inheritDoc}
+     */
     public Class<?> getPropertyType() {
-        return (null == value) ? null : value.getClass();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
-//	@SuppressWarnings("unchecked")
-    /**{@inheritDoc}*/
+    //	@Override
+    //	@SuppressWarnings("unchecked")
+    /**
+     * {@inheritDoc}
+     */
     public Object getValue(Object entity) {
-        return Map.class.cast(entity).get(propertyName);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
-    /**{@inheritDoc}*/
+    //	@Override
+    /**
+     * {@inheritDoc}
+     */
     public boolean isReadable() {
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
-    /**{@inheritDoc}*/
+    //	@Override
+    /**
+     * {@inheritDoc}
+     */
     public boolean isWritable() {
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
-    /**{@inheritDoc}*/
+    //	@Override
+    /**
+     * {@inheritDoc}
+     */
     @SuppressWarnings("unchecked")
     public void setValue(Object entity, Object value) {
-        ((Map<Object, Object>) entity).put(propertyName, value);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
-    /**{@inheritDoc}*/
+    //	@Override
+    /**
+     * {@inheritDoc}
+     */
     public boolean isTransient() {
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
-        return "MapPropertyDescImpl [value=" + value + ", propertyName=" + propertyName + "]";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

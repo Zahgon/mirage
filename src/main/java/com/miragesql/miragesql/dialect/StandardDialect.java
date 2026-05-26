@@ -6,27 +6,26 @@ import com.miragesql.miragesql.type.ValueType;
 public class StandardDialect implements Dialect {
 
     public String getName() {
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public boolean needsParameterForResultSet() {
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public ValueType<?> getValueType() {
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String getSequenceSql(String sequenceName) {
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public boolean supportsGenerationType(GenerationType generationType) {
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public String getCountSql(String sql) {
-        return "SELECT COUNT(*) FROM (" + sql + ")";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

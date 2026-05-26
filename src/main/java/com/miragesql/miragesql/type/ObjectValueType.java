@@ -12,26 +12,22 @@ public class ObjectValueType extends AbstractValueType<Object> {
     }
 
     public Object get(Class<? extends Object> type, ResultSet rs, int columnIndex) throws SQLException {
-        return rs.getObject(columnIndex);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Object get(Class<? extends Object> type, ResultSet rs, String columnName) throws SQLException {
-        return rs.getObject(columnName);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void set(Class<? extends Object> type, PreparedStatement stmt, Object value, int index) throws SQLException {
-        if (value == null) {
-            setNull(type, stmt, index);
-        } else {
-            stmt.setObject(index, value);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Object get(Class<? extends Object> type, CallableStatement cs, int index) throws SQLException {
-        return cs.getObject(index);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Object get(Class<? extends Object> type, CallableStatement cs, String parameterName) throws SQLException {
-        return cs.getObject(parameterName);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

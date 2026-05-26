@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.miragesql.miragesql.SqlManager;
 import com.miragesql.miragesql.SqlManagerImpl;
 import com.miragesql.miragesql.dialect.Dialect;
@@ -26,11 +25,17 @@ public class JDBCSessionImpl implements Session {
     private static final Logger logger = LoggerFactory.getLogger(JDBCSessionImpl.class);
 
     private SqlManager sqlManager;
+
     private DefaultConnectionProvider provider;
+
     private String driver;
+
     private String url;
+
     private String user;
+
     private String password;
+
     private ThreadLocal<Boolean> rollbackOnly = new ThreadLocal<>();
 
     /**
@@ -47,91 +52,66 @@ public class JDBCSessionImpl implements Session {
      *     <li>sql.cache - if true then SqlManager caches parsing result of 2waySQL</li>
      *   </ul>
      */
-    public JDBCSessionImpl(Properties properties){
-        this.driver   = properties.getProperty("jdbc.driver");
-        this.url      = properties.getProperty("jdbc.url");
-        this.user     = properties.getProperty("jdbc.user");
+    public JDBCSessionImpl(Properties properties) {
+        this.driver = properties.getProperty("jdbc.driver");
+        this.url = properties.getProperty("jdbc.url");
+        this.user = properties.getProperty("jdbc.user");
         this.password = properties.getProperty("jdbc.password");
-
         sqlManager = new SqlManagerImpl();
         sqlManager.setDialect(DialectAutoSelector.getDialect(url));
         provider = new DefaultConnectionProvider();
         sqlManager.setConnectionProvider(provider);
-
         String cache = properties.getProperty("sql.cache");
-        if("true".equals(cache)){
+        if ("true".equals(cache)) {
             ((SqlManagerImpl) sqlManager).setCacheMode(true);
         } else {
             ((SqlManagerImpl) sqlManager).setCacheMode(false);
         }
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public void begin() {
-        if(logger.isInfoEnabled()){
-            logger.info("Begin transaction.");
-        }
-        try {
-            if(StringUtil.isNotEmpty(driver)){
-                Class.forName(driver);
-            }
-            Connection conn = DriverManager.getConnection(url, user, password);
-            conn.setAutoCommit(false);
-            provider.setConnection(conn);
-        } catch (ClassNotFoundException ex) {
-            throw new SessionException("Driver class not found.", ex);
-
-        } catch (SQLException ex){
-            throw new SessionException("Failed to begin transaction.", ex);
-
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public void commit() {
-        if(logger.isInfoEnabled()){
-            logger.info("Commit transaction.");
-        }
-        try {
-            provider.getConnection().commit();
-        } catch (SQLException ex){
-            throw new SessionException("Failed to commit transaction.", ex);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public SqlManager getSqlManager() {
-        return sqlManager;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void release() {
-        this.rollbackOnly.remove();
-
-        if(provider instanceof DefaultConnectionProvider){
-            ((DefaultConnectionProvider) provider).releaseConnection();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public void rollback() {
-        if(logger.isInfoEnabled()){
-            logger.info("Rollback transaction.");
-        }
-        try {
-            provider.getConnection().rollback();
-        } catch (SQLException ex){
-            throw new SessionException("Failed to rollback transaction.", ex);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public void setRollbackOnly() {
-        this.rollbackOnly.set(true);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public boolean isRollbackOnly() {
-        return this.rollbackOnly.get() != null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

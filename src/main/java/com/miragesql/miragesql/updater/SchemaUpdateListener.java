@@ -4,10 +4,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-
 import com.miragesql.miragesql.SqlManagerImpl;
 import com.miragesql.miragesql.session.Session;
 import com.miragesql.miragesql.session.SessionFactory;
@@ -29,46 +27,10 @@ public class SchemaUpdateListener implements ServletContextListener {
     private static final Logger logger = LoggerFactory.getLogger(SchemaUpdateListener.class);
 
     public void contextInitialized(ServletContextEvent sce) {
-
-        SchemaUpdater updater = new SchemaUpdater();
-        Session session = SessionFactory.getSession();
-
-        updater.setSqlManager(session.getSqlManager());
-
-        String packageName =
-            sce.getServletContext().getInitParameter("SCHEMA_UPDATE_SQL_PACKAGE");
-
-        if(StringUtil.isNotEmpty(packageName)){
-            updater.setPackageName(packageName);
-        }
-
-        try {
-            session.begin();
-
-            Connection conn = ((SqlManagerImpl) session.getSqlManager())
-                .getConnectionProvider().getConnection();
-
-            try {
-                conn.setAutoCommit(true);
-
-
-            } catch (SQLException ex){
-                logger.error("Failed to update schema.");
-                logger.error(ExceptionUtil.toString(ex));
-
-            } finally {
-                try {
-                    conn.setAutoCommit(false);
-                } catch (SQLException ex) {
-                    logger.error(ExceptionUtil.toString(ex));
-                }
-            }
-        } finally {
-            session.release();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void contextDestroyed(ServletContextEvent sce) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

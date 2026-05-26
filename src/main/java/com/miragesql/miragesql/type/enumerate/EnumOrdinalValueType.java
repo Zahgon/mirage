@@ -21,7 +21,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-
 import com.miragesql.miragesql.type.ValueType;
 import com.miragesql.miragesql.util.AnnotationUtils;
 import com.miragesql.miragesql.annotation.Enumerated;
@@ -30,7 +29,7 @@ import com.miragesql.miragesql.bean.PropertyDesc;
 
 /**
  * {@link Enum}型をordinalの {@code int}型としてDBに保存するための {@link ValueType}実装クラス。
- * 
+ *
  * @since 1.0
  * @author daisuke
  */
@@ -45,75 +44,42 @@ public class EnumOrdinalValueType implements ValueType<Object> {
     }
 
     public Integer get(Class<? extends Object> type, CallableStatement cs, int index) throws SQLException {
-        int value = cs.getInt(index);
-        if (cs.wasNull()) {
-            return null;
-        }
-        return value;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Integer get(Class<? extends Object> type, CallableStatement cs, String parameterName) throws SQLException {
-        int value = cs.getInt(parameterName);
-        if (cs.wasNull()) {
-            return null;
-        }
-        return value;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Enum<? extends Object> get(Class<? extends Object> type, ResultSet rs, int columnIndex) throws SQLException {
-        int ordinal = rs.getInt(columnIndex);
-        if (rs.wasNull()) {
-            return null;
-        }
-        return toEnum(type, ordinal);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Enum<? extends Object> get(Class<? extends Object> type, ResultSet rs, String columnName) throws SQLException {
-        int ordinal = rs.getInt(columnName);
-        if (rs.wasNull()) {
-            return null;
-        }
-        return toEnum(type, ordinal);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Class<? extends Object> getJavaType(int sqlType) {
-        return Integer.class;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public boolean isSupport(Class<?> type, PropertyDesc propertyDesc) {
-        if (Enum.class.isAssignableFrom(type) == false) {
-            return false;
-        }
-        if(propertyDesc != null) {
-            Enumerated property = propertyDesc.getAnnotation(Enumerated.class);
-            if(property != null && property.value() == EnumType.ORDINAL) {
-                return true;
-            }
-        }
-        Enumerated fieldType = AnnotationUtils.findAnnotation(type, Enumerated.class);
-        if (fieldType != null && fieldType.value() == EnumType.ORDINAL) {
-            return true;
-        }
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void registerOutParameter(Class<?> type, CallableStatement cs, int index) throws SQLException {
-        cs.registerOutParameter(index, Types.INTEGER);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void registerOutParameter(Class<?> type, CallableStatement cs, String parameterName) throws SQLException {
-        cs.registerOutParameter(parameterName, Types.INTEGER);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void set(Class<? extends Object> type, PreparedStatement stmt, Object value, int index) throws SQLException {
-        if (value == null) {
-            stmt.setNull(index, Types.INTEGER);
-        } else {
-            stmt.setInt(index, ((Enum<?>) value).ordinal());
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Object getDefaultValue() {
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

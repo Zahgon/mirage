@@ -7,33 +7,27 @@ import java.sql.SQLException;
 
 public class SqlDateValueType extends AbstractValueType<java.sql.Date> {
 
-
     public SqlDateValueType() {
         super(java.sql.Date.class);
     }
 
     public java.sql.Date get(Class<? extends java.sql.Date> type, ResultSet rs, int columnIndex) throws SQLException {
-        return rs.getDate(columnIndex);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public java.sql.Date get(Class<? extends java.sql.Date> type, ResultSet rs, String columnName) throws SQLException {
-        return rs.getDate(columnName);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    public void set(Class<? extends java.sql.Date> type, PreparedStatement stmt, java.sql.Date value,
-            int index) throws SQLException {
-        if (value == null){
-            setNull(type, stmt, index);
-        } else {
-            stmt.setDate(index, (java.sql.Date) value);
-        }
+    public void set(Class<? extends java.sql.Date> type, PreparedStatement stmt, java.sql.Date value, int index) throws SQLException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public java.sql.Date get(Class<? extends java.sql.Date> type, CallableStatement cs, int index) throws SQLException {
-        return cs.getDate(index);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public java.sql.Date get(Class<? extends java.sql.Date> type, CallableStatement cs, String parameterName) throws SQLException {
-        return cs.getDate(parameterName);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

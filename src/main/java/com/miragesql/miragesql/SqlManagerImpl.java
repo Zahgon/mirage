@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
 import com.miragesql.miragesql.annotation.PrimaryKey;
 import com.miragesql.miragesql.annotation.PrimaryKey.GenerationType;
 import com.miragesql.miragesql.annotation.ResultSet;
@@ -54,8 +53,7 @@ import com.miragesql.miragesql.util.Validate;
 
 public class SqlManagerImpl implements SqlManager {
 
-//	private static final Logger logger = Logger.getLogger(SqlManagerImpl.class.getName());
-
+    //	private static final Logger logger = Logger.getLogger(SqlManagerImpl.class.getName());
     protected BeanDescFactory beanDescFactory;
 
     protected ConnectionProvider connectionProvider;
@@ -74,7 +72,7 @@ public class SqlManagerImpl implements SqlManager {
 
     protected boolean cacheMode = false;
 
-    public SqlManagerImpl(){
+    public SqlManagerImpl() {
         addValueType(new StringValueType());
         addValueType(new IntegerValueType());
         addValueType(new IntegerPrimitiveValueType());
@@ -98,247 +96,169 @@ public class SqlManagerImpl implements SqlManager {
         addValueType(new EnumOrdinalValueType());
         addValueType(new EnumOneBasedOrdinalValueType());
         addValueType(new ObjectValueType());
-//		addValueType(new com.miragesql.miragesql.type.DefaultValueType());
-
+        //		addValueType(new com.miragesql.miragesql.type.DefaultValueType());
         setDialect(dialect);
         setBeanDescFactory(new BeanDescFactory());
         setNameConverter(new DefaultNameConverter());
         setEntityOperator(new DefaultEntityOperator());
     }
 
-    public void setCacheMode(boolean cacheMode){
-        this.cacheMode = cacheMode;
+    public void setCacheMode(boolean cacheMode) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void setBeanDescFactory(BeanDescFactory beanDescFactory) {
-        this.beanDescFactory = beanDescFactory;
-        this.sqlExecutor.setBeanDescFactory(beanDescFactory);
-        this.callExecutor.setBeanDescFactory(beanDescFactory);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public void setNameConverter(NameConverter nameConverter) {
-        this.nameConverter = nameConverter;
-        this.sqlExecutor.setNameConverter(nameConverter);
-        this.callExecutor.setNameConverter(nameConverter);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    public NameConverter getNameConverter(){
-        return this.nameConverter;
+    public NameConverter getNameConverter() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public void setConnectionProvider(ConnectionProvider connectionProvider) {
-        this.connectionProvider = connectionProvider;
-        this.sqlExecutor.setConnectionProvider(connectionProvider);
-        this.callExecutor.setConnectionProvider(connectionProvider);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
-    public void setEntityOperator(EntityOperator entityOperator){
-        this.entityOperator = entityOperator;
-        this.sqlExecutor.setEntityOperator(entityOperator);
-        this.callExecutor.setEntityOperator(entityOperator);
+    /**
+     * {@inheritDoc}
+     */
+    public void setEntityOperator(EntityOperator entityOperator) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    public ConnectionProvider getConnectionProvider(){
-        return this.connectionProvider;
+    public ConnectionProvider getConnectionProvider() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
-    public void setDialect(Dialect dialect){
-        this.dialect = dialect;
-        this.sqlExecutor.setDialect(dialect);
-        this.callExecutor.setDialect(dialect);
+    /**
+     * {@inheritDoc}
+     */
+    public void setDialect(Dialect dialect) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    public Dialect getDialect(){
-        return this.dialect;
+    public Dialect getDialect() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     protected Node prepareNode(SqlResource resource) {
-
-        if(cacheMode && nodeCache.containsKey(resource)){
-            return nodeCache.get(resource);
-        }
-
-        String sql = null;
-        try {
-            InputStream in = resource.getInputStream();
-            if (in == null) {
-                throw new RuntimeException(String.format(
-                        "resource: %s is not found.", resource));
-            }
-            sql = new String(IOUtil.readStream(in), StandardCharsets.UTF_8);
-        } catch (IORuntimeException ex){
-            throw new IORuntimeException(String.format("Failed to load SQL from: %s", resource), ex.getCause());
-
-        } catch (UnsupportedEncodingException e) {
-            // must not to be reached here
-            throw new RuntimeException(e);
-
-        } catch (IOException e) {
-            throw new IORuntimeException(e);
-
-        }
-
-        sql = sql.trim();
-        if(sql.endsWith(";")){
-            sql = sql.substring(0, sql.length() - 1);
-        }
-
-        Node node = new SqlParserImpl(sql, beanDescFactory).parse();
-
-        if(cacheMode){
-            nodeCache.put(resource, node);
-        }
-
-        return node;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    protected SqlContext prepareSqlContext(Object param){
-        return MirageUtil.getSqlContext(beanDescFactory, param);
+    protected SqlContext prepareSqlContext(Object param) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public int executeUpdate(SqlResource resource) {
-        return executeUpdate(resource, null);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public int executeUpdate(SqlResource resource, Object param) {
-        Node node = prepareNode(resource);
-        SqlContext context = prepareSqlContext(param);
-        node.accept(context);
-
-        return sqlExecutor.executeUpdateSql(context.getSql(), context.getBindVariables(), null);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public <T> List<T> getResultList(Class<T> clazz, SqlResource resource) {
-        return getResultList(clazz, resource, null);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public <T> List<T> getResultList(Class<T> clazz, SqlResource resource, Object param) {
-        Node node = prepareNode(resource);
-        SqlContext context = prepareSqlContext(param);
-        node.accept(context);
-
-        return sqlExecutor.getResultList(clazz, context.getSql(), context.getBindVariables());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public <T> T getSingleResult(Class<T> clazz, SqlResource resource) {
-        return getSingleResult(clazz, resource, null);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public <T> T getSingleResult(Class<T> clazz, SqlResource resource, Object param) {
-        Node node = prepareNode(resource);
-        SqlContext context = prepareSqlContext(param);
-        node.accept(context);
-
-        return sqlExecutor.getSingleResult(clazz, context.getSql(), context.getBindVariables());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public int deleteEntity(Object entity) {
-        List<PropertyDesc> propDescs = new ArrayList<>();
-        String executeSql = MirageUtil.buildDeleteSql(null, beanDescFactory, entityOperator, entity, nameConverter, propDescs);
-
-        return sqlExecutor.executeUpdateSql(executeSql, propDescs.toArray(new PropertyDesc[propDescs.size()]), entity);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int deleteEntity(String entityName, Object entity) {
-        List<PropertyDesc> propDescs = new ArrayList<>();
-        String executeSql = MirageUtil.buildDeleteSql(entityName, beanDescFactory, entityOperator, entity, nameConverter, propDescs);
-
-        return sqlExecutor.executeUpdateSql(executeSql, propDescs.toArray(new PropertyDesc[propDescs.size()]), entity);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public <T> int deleteBatch(T... entities) {
-        if(entities.length == 0){
-            return 0;
-        }
-
-        List<PropertyDesc[]> paramsList = new ArrayList<>();
-        String executeSql = null;
-
-        for(Object entity: entities){
-            List<PropertyDesc> propDescs = new ArrayList<>();
-            String sql = MirageUtil.buildDeleteSql(null, beanDescFactory, entityOperator, entity, nameConverter, propDescs);
-
-            if(executeSql == null){
-                executeSql = sql;
-
-            } else if(!sql.equals(executeSql)){
-                throw new IllegalArgumentException("A different entity is contained in the entity list.");
-            }
-
-            paramsList.add(propDescs.toArray(new PropertyDesc[propDescs.size()]));
-        }
-
-        return sqlExecutor.executeBatchUpdateSql(executeSql, paramsList, entities);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T> int deleteBatch(String entityName, T... entities) {
-        if(entities.length == 0){
-            return 0;
-        }
-
-        List<PropertyDesc[]> paramsList = new ArrayList<>();
-        String executeSql = null;
-
-        for(Object entity: entities){
-            List<PropertyDesc> propDescs = new ArrayList<>();
-            String sql = MirageUtil.buildDeleteSql(entityName, beanDescFactory, entityOperator, entity, nameConverter, propDescs);
-
-            if(executeSql == null){
-                executeSql = sql;
-
-            } else if(!sql.equals(executeSql)){
-                throw new IllegalArgumentException("A different entity is contained in the entity list.");
-            }
-
-            paramsList.add(propDescs.toArray(new PropertyDesc[propDescs.size()]));
-        }
-
-        return sqlExecutor.executeBatchUpdateSql(executeSql, paramsList, entities);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public <T> int deleteBatch(List<T> entities) {
-        return deleteBatch(entities.toArray());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T> int deleteBatch(String entityName, List<T> entities) {
-        return deleteBatch(entityName, entities.toArray());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Sets GenerationType.SEQUENCE properties value.
      */
-    private void fillPrimaryKeysBySequence(Object entity){
-        if(!dialect.supportsGenerationType(GenerationType.SEQUENCE)){
+    private void fillPrimaryKeysBySequence(Object entity) {
+        if (!dialect.supportsGenerationType(GenerationType.SEQUENCE)) {
             return;
         }
-
         BeanDesc beanDesc = beanDescFactory.getBeanDesc(entity.getClass());
         int size = beanDesc.getPropertyDescSize();
-
-        for(int i=0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             PropertyDesc propertyDesc = beanDesc.getPropertyDesc(i);
             PrimaryKey primaryKey = propertyDesc.getAnnotation(PrimaryKey.class);
-
-            if(primaryKey != null && primaryKey.generationType() == GenerationType.SEQUENCE){
+            if (primaryKey != null && primaryKey.generationType() == GenerationType.SEQUENCE) {
                 String sql = dialect.getSequenceSql(primaryKey.generator());
                 Object value = sqlExecutor.getSingleResult(propertyDesc.getPropertyType(), sql, new Object[0]);
                 propertyDesc.setValue(entity, value);
@@ -346,186 +266,109 @@ public class SqlManagerImpl implements SqlManager {
         }
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public int insertEntity(Object entity) {
-        fillPrimaryKeysBySequence(entity);
-
-        List<PropertyDesc> propDescs = new ArrayList<>();
-        String sql = MirageUtil.buildInsertSql(null, beanDescFactory, entityOperator, entity, nameConverter, propDescs);
-
-        return sqlExecutor.executeUpdateSql(sql, propDescs.toArray(new PropertyDesc[propDescs.size()]), entity);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int insertEntity(String entityName, Object entity) {
-        fillPrimaryKeysBySequence(entity);
-
-        List<PropertyDesc> propDescs = new ArrayList<>();
-        String sql = MirageUtil.buildInsertSql(entityName, beanDescFactory, entityOperator, entity, nameConverter, propDescs);
-
-        return sqlExecutor.executeUpdateSql(sql, propDescs.toArray(new PropertyDesc[propDescs.size()]), entity);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
-    public <T> int insertBatch(T... entities){
-        if(entities.length == 0){
-            return 0;
-        }
-
-        List<PropertyDesc[]> propDescsList = new ArrayList<>();
-        String executeSql = null;
-
-        for(Object entity: entities){
-            fillPrimaryKeysBySequence(entity);
-
-            List<PropertyDesc> propDescs = new ArrayList<>();
-            String sql = MirageUtil.buildInsertSql(null, beanDescFactory, entityOperator, entity, nameConverter, propDescs);
-
-            if(executeSql == null){
-                executeSql = sql;
-
-            } else if(!sql.equals(executeSql)){
-                throw new IllegalArgumentException("A different entity is contained in the entity list.");
-            }
-
-            propDescsList.add(propDescs.toArray(new PropertyDesc[propDescs.size()]));
-        }
-        return sqlExecutor.executeBatchUpdateSql(executeSql, propDescsList, entities);
+    /**
+     * {@inheritDoc}
+     */
+    public <T> int insertBatch(T... entities) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T> int insertBatch(String entityName, T... entities) {
-        if(entities.length == 0){
-            return 0;
-        }
-
-        List<PropertyDesc[]> propDescsList = new ArrayList<>();
-        String executeSql = null;
-
-        for(Object entity: entities){
-            fillPrimaryKeysBySequence(entity);
-
-            List<PropertyDesc> propDescs = new ArrayList<>();
-            String sql = MirageUtil.buildInsertSql(entityName, beanDescFactory, entityOperator, entity, nameConverter, propDescs);
-
-            if(executeSql == null){
-                executeSql = sql;
-
-            } else if(!sql.equals(executeSql)){
-                throw new IllegalArgumentException("A different entity is contained in the entity list.");
-            }
-
-            propDescsList.add(propDescs.toArray(new PropertyDesc[propDescs.size()]));
-        }
-        return sqlExecutor.executeBatchUpdateSql(executeSql, propDescsList, entities);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
-    public <T> int insertBatch(List<T> entities){
-        return insertBatch(entities.toArray());
+    /**
+     * {@inheritDoc}
+     */
+    public <T> int insertBatch(List<T> entities) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T> int insertBatch(String entityName, List<T> entities) {
-        return insertBatch(entityName, entities.toArray());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public int updateEntity(Object entity) {
-        List<PropertyDesc> propDescs = new ArrayList<>();
-        String executeSql = MirageUtil.buildUpdateSql(null, beanDescFactory, entityOperator, entity, nameConverter, propDescs);
-
-        return sqlExecutor.executeUpdateSql(executeSql, propDescs.toArray(new PropertyDesc[propDescs.size()]), entity);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int updateEntity(String entityName, Object entity) {
-        List<PropertyDesc> propDescs = new ArrayList<>();
-        String executeSql = MirageUtil.buildUpdateSql(entityName, beanDescFactory, entityOperator, entity, nameConverter, propDescs);
-
-        return sqlExecutor.executeUpdateSql(executeSql, propDescs.toArray(new PropertyDesc[propDescs.size()]), entity);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public <T> int updateBatch(T... entities) {
-        if(entities.length == 0){
-            return 0;
-        }
-
-        List<PropertyDesc[]> propDescsList = new ArrayList<>();
-        String executeSql = null;
-
-        for(Object entity: entities){
-            List<PropertyDesc> propDescs = new ArrayList<>();
-            String sql = MirageUtil.buildUpdateSql(null, beanDescFactory, entityOperator, entity, nameConverter, propDescs);
-
-            if(executeSql == null){
-                executeSql = sql;
-
-            } else if(!sql.equals(executeSql)){
-                throw new IllegalArgumentException("A different entity is contained in the entity list.");
-            }
-
-            propDescsList.add(propDescs.toArray(new PropertyDesc[propDescs.size()]));
-        }
-
-        return sqlExecutor.executeBatchUpdateSql(executeSql, propDescsList, entities);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T> int updateBatch(String entityName, T... entities) {
-        if(entities.length == 0){
-            return 0;
-        }
-
-        List<PropertyDesc[]> propDescsList = new ArrayList<>();
-        String executeSql = null;
-
-        for(Object entity: entities){
-            List<PropertyDesc> propDescs = new ArrayList<>();
-            String sql = MirageUtil.buildUpdateSql(entityName, beanDescFactory, entityOperator, entity, nameConverter, propDescs);
-
-            if(executeSql == null){
-                executeSql = sql;
-
-            } else if(!sql.equals(executeSql)){
-                throw new IllegalArgumentException("A different entity is contained in the entity list.");
-            }
-
-            propDescsList.add(propDescs.toArray(new PropertyDesc[propDescs.size()]));
-        }
-
-        return sqlExecutor.executeBatchUpdateSql(executeSql, propDescsList, entities);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public <T> int updateBatch(List<T> entities) {
-        return updateBatch(entities.toArray());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T> int updateBatch(String entityName, List<T> entities) {
-        return updateBatch(entityName, entities.toArray());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public <T> T findEntity(Class<T> clazz, Object... id) {
-        String executeSql = MirageUtil.buildSelectSQL(null, beanDescFactory, entityOperator, clazz, nameConverter);
-        return sqlExecutor.getSingleResult(clazz, executeSql, id);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T> T findEntity(String entityName, Class<T> clazz, Object... id) {
-        if(entityName==null) { return findEntity(clazz, id); }
-        String executeSql = MirageUtil.buildSelectSQL(entityName, beanDescFactory, entityOperator, clazz, nameConverter);
-        return sqlExecutor.getSingleResult(clazz, executeSql, id);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -537,135 +380,95 @@ public class SqlManagerImpl implements SqlManager {
      * an element in the {@code valueTypes} is {@code null}
      */
     public void setValueTypes(List<ValueType<?>> valueTypes) {
-        Validate.noNullElements(valueTypes);
-        this.sqlExecutor.setValueTypes(valueTypes);
-        this.callExecutor.setValueTypes(valueTypes);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public void addValueType(ValueType<?> valueType) {
-        this.sqlExecutor.addValueType(valueType);
-        this.callExecutor.addValueType(valueType);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public int getCount(SqlResource resource) {
-        return getCount(resource, null);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public int getCount(SqlResource resource, Object param) {
-        Node node = prepareNode(resource);
-        SqlContext context = prepareSqlContext(param);
-        node.accept(context);
-        String sql = dialect.getCountSql(context.getSql());
-
-        Integer result = sqlExecutor.getSingleResult(Integer.class, sql, context.getBindVariables());
-        if(result == null){
-            return 0;
-        }
-        return result.intValue();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, SqlResource resource) {
-        return this.<T, R> iterate(clazz, callback, resource, null);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public <T, R> R iterate(Class<T> clazz, IterationCallback<T, R> callback, SqlResource resource, Object param) {
-        Node node = prepareNode(resource);
-        SqlContext context = prepareSqlContext(param);
-        node.accept(context);
-
-        return sqlExecutor.<T, R> iterate(clazz, callback, context.getSql(), context.getBindVariables());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
-    public void call(String procedureName){
-        String sql = toCallString(procedureName, false);
-        callExecutor.call(sql);
+    /**
+     * {@inheritDoc}
+     */
+    public void call(String procedureName) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
-    public void call(String procedureName, Object parameter){
-        String sql = toCallString(procedureName, parameter, false);
-        callExecutor.call(sql, parameter);
+    /**
+     * {@inheritDoc}
+     */
+    public void call(String procedureName, Object parameter) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
-    public <T> T call(Class<T> resultClass, String functionName){
-        String sql = toCallString(functionName, true);
-        return callExecutor.call(resultClass, sql);
+    /**
+     * {@inheritDoc}
+     */
+    public <T> T call(Class<T> resultClass, String functionName) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
-    public <T> T call(Class<T> resultClass, String functionName, Object param){
-        String sql = toCallString(functionName, param, true);
-        return callExecutor.call(resultClass, sql, param);
+    /**
+     * {@inheritDoc}
+     */
+    public <T> T call(Class<T> resultClass, String functionName, Object param) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
-    public <T> List<T> callForList(Class<T> resultClass, String functionName){
-        String sql = toCallString(functionName, true);
-        return callExecutor.callForList(resultClass, sql);
+    /**
+     * {@inheritDoc}
+     */
+    public <T> List<T> callForList(Class<T> resultClass, String functionName) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
-    public <T> List<T> callForList(Class<T> resultClass, String functionName, Object param){
-        String sql = toCallString(functionName, param, true);
-        return callExecutor.callForList(resultClass, sql, param);
+    /**
+     * {@inheritDoc}
+     */
+    public <T> List<T> callForList(Class<T> resultClass, String functionName, Object param) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    protected String toCallString(String moduleName, boolean function){
-        return toCallString(moduleName, null, function);
+    protected String toCallString(String moduleName, boolean function) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    protected String toCallString(String moduleName, Object param, boolean function){
-        StringBuilder sb = new StringBuilder();
-
-        if(function){
-            sb.append("{? = call ");
-        } else {
-            sb.append("{call ");
-        }
-
-        sb.append(moduleName);
-        sb.append("(");
-        if (param != null){
-            StringBuilder p = new StringBuilder();
-            BeanDesc beanDesc = beanDescFactory.getBeanDesc(param);
-            int parameterCount = 0;
-            for (int i = 0; i < beanDesc.getPropertyDescSize(); i++) {
-                PropertyDesc pd = beanDesc.getPropertyDesc(i);
-                if (needsParameter(pd)){
-                    if (parameterCount > 0) {
-                        p.append(", ");
-                    }
-                    if (parameterCount >= 0) {
-                        p.append("?");
-                    }
-                    parameterCount++;
-                }
-            }
-            sb.append(p.toString());
-        }
-        sb.append(")");
-        sb.append("}");
-
-        return sb.toString();
+    protected String toCallString(String moduleName, Object param, boolean function) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    protected boolean needsParameter(PropertyDesc pd){
-        ResultSet resultSet = pd.getAnnotation(ResultSet.class);
-        if (resultSet != null){
-            if (dialect.needsParameterForResultSet()){
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return true;
-        }
+    protected boolean needsParameter(PropertyDesc pd) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

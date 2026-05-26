@@ -7,51 +7,32 @@ import java.sql.SQLException;
 
 public class DoublePrimitiveValueType extends AbstractValueType<Double> {
 
-
     public DoublePrimitiveValueType() {
         super(Double.TYPE);
     }
 
     public Double get(Class<? extends Double> type, ResultSet rs, int columnIndex) throws SQLException {
-        return rs.getDouble(columnIndex);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Double get(Class<? extends Double> type, ResultSet rs, String columnName) throws SQLException {
-        return rs.getDouble(columnName);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    public void set(Class<? extends Double> type, PreparedStatement stmt, Double value,
-            int index) throws SQLException {
-        if (value == null){
-            setNull(type, stmt, index);
-        } else {
-            stmt.setDouble(index, (Double) value);
-        }
+    public void set(Class<? extends Double> type, PreparedStatement stmt, Double value, int index) throws SQLException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Double get(Class<? extends Double> type, CallableStatement cs, int index) throws SQLException {
-        double value = cs.getDouble(index);
-
-        if (cs.wasNull()) {
-            return null;
-        }
-
-        return value;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Double get(Class<? extends Double> type, CallableStatement cs, String parameterName) throws SQLException {
-        double value = cs.getDouble(parameterName);
-
-        if (cs.wasNull()) {
-            return null;
-        }
-
-        return value;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
-    public Double getDefaultValue(){
-        return 0d;
+    public Double getDefaultValue() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

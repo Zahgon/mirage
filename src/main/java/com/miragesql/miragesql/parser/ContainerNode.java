@@ -25,10 +25,8 @@ public class ContainerNode extends AbstractNode {
     public ContainerNode() {
     }
 
-//	@Override
+    //	@Override
     public void accept(SqlContext ctx) {
-        for (int i = 0; i < getChildSize(); ++i) {
-            getChild(i).accept(ctx);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

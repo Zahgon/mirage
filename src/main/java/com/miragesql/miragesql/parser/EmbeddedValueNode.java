@@ -21,7 +21,6 @@ import com.miragesql.miragesql.bean.PropertyDesc;
 import com.miragesql.miragesql.exception.TwoWaySQLException;
 import com.miragesql.miragesql.util.StringUtil;
 
-
 /**
  * {@link Node} for embedding values.
  *
@@ -57,31 +56,16 @@ public class EmbeddedValueNode extends AbstractNode {
      * @return the expression
      */
     public String getExpression() {
-        return expression;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
+    //	@Override
     public void accept(SqlContext ctx) {
-        Object value = ctx.getArg(baseName);
-        Class<?> clazz = ctx.getArgType(baseName);
-        if (propertyName != null) {
-            BeanDesc beanDesc = beanDescFactory.getBeanDesc(clazz);
-            PropertyDesc pd = beanDesc.getPropertyDesc(propertyName);
-            value = pd.getValue(value);
-            clazz = pd.getPropertyType();
-        }
-        if (value != null) {
-            String sql = value.toString();
-            if (sql.indexOf(';') >= 0) {
-                throw new TwoWaySQLException("semicolon is not allowed.");
-            }
-            ctx.addSql(sql);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return "EmbeddedValueNode [expression=" + expression + ", baseName=" + baseName + ", propertyName="
-                + propertyName + ", children=" + children + "]";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

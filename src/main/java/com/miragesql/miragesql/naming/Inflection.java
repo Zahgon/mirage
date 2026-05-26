@@ -57,7 +57,6 @@ public class Inflection {
         plural("([m|l])ouse$", "$1ice");
         plural("^(ox)$", "$1en");
         plural("(quiz)$", "$1zes");
-
         singular("s$", "");
         singular("(n)ews$", "$1ews");
         singular("([ti])a$", "$1um");
@@ -82,14 +81,12 @@ public class Inflection {
         singular("(vert|ind)ices$", "$1ex");
         singular("(matr)ices$", "$1ix");
         singular("(quiz)zes$", "$1");
-
         // irregular
         irregular("person", "people");
         irregular("man", "men");
         irregular("child", "children");
         irregular("sex", "sexes");
         irregular("move", "moves");
-
         uncountable("equipment");
         uncountable("information");
         uncountable("rice");
@@ -98,14 +95,11 @@ public class Inflection {
         uncountable("series");
         uncountable("fish");
         uncountable("sheep");
-
         //Collections.reverse(singular);
         //Collections.reverse(plural);
     }
 
-
     // CHECKSTYLE:ON
-
     /**
      * Return true if the word is uncountable.
      *
@@ -113,12 +107,7 @@ public class Inflection {
      * @return True if it is uncountable
      */
     public static boolean isUncountable(String word) {
-        for (String w : UNCOUNTABLE) {
-            if (w.equalsIgnoreCase(word)) {
-                return true;
-            }
-        }
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -128,16 +117,7 @@ public class Inflection {
      * @return The pluralized word
      */
     public static String pluralize(String word) {
-        if (isUncountable(word)) {
-            return word;
-        } else {
-            for (Inflection inflection : PLURAL) {
-                if (inflection.match(word)) {
-                    return inflection.replace(word);
-                }
-            }
-            return word;
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -147,16 +127,7 @@ public class Inflection {
      * @return The singularized word
      */
     public static String singularize(String word) {
-        if (isUncountable(word)) {
-            return word;
-        } else {
-            for (Inflection inflection : SINGULAR) {
-                if (inflection.match(word)) {
-                    return inflection.replace(word);
-                }
-            }
-        }
-        return word;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static void irregular(String s, String p) {
@@ -176,13 +147,11 @@ public class Inflection {
         UNCOUNTABLE.add(word);
     }
 
-
     private String pattern;
 
     private String replacement;
 
     private boolean ignoreCase;
-
 
     Inflection(String pattern) {
         this(pattern, null, true);
@@ -205,11 +174,7 @@ public class Inflection {
      * @return True if it matches the inflection pattern
      */
     public boolean match(String word) {
-        int flags = 0;
-        if (ignoreCase) {
-            flags = flags | Pattern.CASE_INSENSITIVE;
-        }
-        return Pattern.compile(pattern, flags).matcher(word).find();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -219,10 +184,6 @@ public class Inflection {
      * @return The result
      */
     public String replace(String word) {
-        int flags = 0;
-        if (ignoreCase) {
-            flags = flags | Pattern.CASE_INSENSITIVE;
-        }
-        return Pattern.compile(pattern, flags).matcher(word).replaceAll(replacement);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

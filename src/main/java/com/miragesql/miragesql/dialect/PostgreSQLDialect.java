@@ -9,32 +9,35 @@ public class PostgreSQLDialect extends StandardDialect {
 
     private PostgreResultSetValueType valueType = new PostgreResultSetValueType();
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getName() {
-        return "postgresql";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ValueType<?> getValueType(){
-        return valueType;
+    public ValueType<?> getValueType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getSequenceSql(String sequenceName) {
-        return String.format("SELECT NEXTVAL('%s')", sequenceName);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean supportsGenerationType(GenerationType generationType) {
-        if(generationType == GenerationType.IDENTITY){
-            return false;
-        }
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
-
 }

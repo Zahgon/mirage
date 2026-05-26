@@ -3,22 +3,18 @@ package com.miragesql.miragesql.session;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
-
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import com.zaxxer.hikari.util.PropertyElf;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.sql.DataSource;
-
 import com.miragesql.miragesql.SqlManager;
 import com.miragesql.miragesql.SqlManagerImpl;
 import com.miragesql.miragesql.exception.ConfigurationException;
 import com.miragesql.miragesql.exception.SessionException;
 import com.miragesql.miragesql.provider.DefaultConnectionProvider;
 import com.miragesql.miragesql.util.StringUtil;
-
 
 /**
  * The implementation of {@link Session} which gets the connection from the HikariCP (connection pool).
@@ -43,8 +39,11 @@ public class HikariCPSessionImpl implements Session {
     private static final Logger logger = LoggerFactory.getLogger(HikariCPSessionImpl.class);
 
     private SqlManager sqlManager;
+
     private DefaultConnectionProvider provider;
+
     private DataSource dataSource;
+
     private ThreadLocal<Boolean> rollbackOnly = new ThreadLocal<>();
 
     /**
@@ -59,112 +58,90 @@ public class HikariCPSessionImpl implements Session {
      *     <li>dataSource.xxx - HikariCP Optional settings</li>
      *   </ul>
      */
-    public HikariCPSessionImpl(Properties properties){
-        String driver   = properties.getProperty("jdbc.driver");
-        String url      = properties.getProperty("jdbc.url");
-        String user     = properties.getProperty("jdbc.user");
+    public HikariCPSessionImpl(Properties properties) {
+        String driver = properties.getProperty("jdbc.driver");
+        String url = properties.getProperty("jdbc.url");
+        String user = properties.getProperty("jdbc.user");
         String password = properties.getProperty("jdbc.password");
-
-
         sqlManager = new SqlManagerImpl();
         sqlManager.setDialect(DialectAutoSelector.getDialect(url));
         provider = new DefaultConnectionProvider();
         sqlManager.setConnectionProvider(provider);
-
         String cache = properties.getProperty("sql.cache");
-        if("true".equals(cache)){
+        if ("true".equals(cache)) {
             ((SqlManagerImpl) sqlManager).setCacheMode(true);
         } else {
             ((SqlManagerImpl) sqlManager).setCacheMode(false);
         }
-
         try {
-            if(StringUtil.isNotEmpty(driver)){
+            if (StringUtil.isNotEmpty(driver)) {
                 Class.forName(driver);
             }
         } catch (ClassNotFoundException e) {
             throw new ConfigurationException(e);
-
         }
-
         HikariConfig config = new HikariConfig();
         config.setDriverClassName(driver);
         config.setJdbcUrl(url);
         config.setUsername(user);
         config.setPassword(password);
-
         Properties hikariProperties = new Properties(properties);
         hikariProperties.remove("jdbc.driver");
         hikariProperties.remove("jdbc.url");
         hikariProperties.remove("jdbc.user");
         hikariProperties.remove("jdbc.password");
         hikariProperties.remove("sql.cache");
-
         // set Hikari optional properties. All start with "dataSource.XXX"
         PropertyElf.setTargetFromProperties(config, hikariProperties);
-
         dataSource = new HikariDataSource(config);
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public void begin() {
-        if(logger.isInfoEnabled()){
-            logger.info("Begin transaction.");
-        }
-        try {
-            Connection conn = dataSource.getConnection();
-            conn.setAutoCommit(false);
-            provider.setConnection(conn);
-        } catch (SQLException ex){
-            throw new SessionException("Failed to begin transaction.", ex);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public void commit() {
-        if(logger.isInfoEnabled()){
-            logger.info("Commit transaction.");
-        }
-        try {
-            provider.getConnection().commit();
-        } catch (SQLException ex){
-            throw new SessionException("Failed to commit transaction.", ex);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public void rollback() {
-        if(logger.isInfoEnabled()){
-            logger.info("Rollback transaction.");
-        }
-        try {
-            provider.getConnection().rollback();
-        } catch (SQLException ex){
-            throw new SessionException("Failed to rollback transaction.", ex);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public void release() {
-        this.rollbackOnly.remove();
-
-        if(provider instanceof DefaultConnectionProvider){
-            ((DefaultConnectionProvider) provider).releaseConnection();
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public SqlManager getSqlManager() {
-        return sqlManager;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public void setRollbackOnly() {
-        this.rollbackOnly.set(true);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     public boolean isRollbackOnly() {
-        return this.rollbackOnly.get() != null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

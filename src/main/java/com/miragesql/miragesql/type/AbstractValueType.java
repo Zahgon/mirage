@@ -12,7 +12,6 @@ import java.sql.Types;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-
 import com.miragesql.miragesql.bean.PropertyDesc;
 import com.miragesql.miragesql.util.Validate;
 
@@ -45,22 +44,8 @@ public abstract class AbstractValueType<T> implements ValueType<T> {
         javaTypeToSqlTypeMap.put(Clob.class, new Integer(Types.CLOB));
     }
 
-
     public static int javaTypeToSqlType(Class<?> javaType) {
-        Integer sqlType = javaTypeToSqlTypeMap.get(javaType);
-        if (sqlType != null) {
-            return sqlType.intValue();
-        }
-        if (Number.class.isAssignableFrom(javaType)) {
-            return Types.NUMERIC;
-        }
-        if (isStringValue(javaType)) {
-            return Types.VARCHAR;
-        }
-        if (isDateValue(javaType) || Calendar.class.isAssignableFrom(javaType)) {
-            return Types.TIMESTAMP;
-        }
-        return TYPE_UNKNOWN;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private static boolean isStringValue(Class<?> inValueType) {
@@ -68,22 +53,14 @@ public abstract class AbstractValueType<T> implements ValueType<T> {
     }
 
     private static boolean isDateValue(Class<?> inValueType) {
-        return (java.util.Date.class.isAssignableFrom(inValueType) && !(java.sql.Date.class
-            .isAssignableFrom(inValueType) || java.sql.Time.class.isAssignableFrom(inValueType) || java.sql.Timestamp.class
-            .isAssignableFrom(inValueType)));
+        return (java.util.Date.class.isAssignableFrom(inValueType) && !(java.sql.Date.class.isAssignableFrom(inValueType) || java.sql.Time.class.isAssignableFrom(inValueType) || java.sql.Timestamp.class.isAssignableFrom(inValueType)));
     }
 
     protected static boolean isPrimitive(Class<?> type) {
-        if (type == Integer.TYPE || type == Long.TYPE || type == Short.TYPE || type == Double.TYPE
-                || type == Float.TYPE || type == Boolean.TYPE) {
-            return true;
-        }
-        return false;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-
     private final Class<T> type;
-
 
     public AbstractValueType(Class<T> type) {
         Validate.notNull(type);
@@ -91,35 +68,26 @@ public abstract class AbstractValueType<T> implements ValueType<T> {
     }
 
     public boolean isSupport(Class<?> type, PropertyDesc propertyDesc) {
-        return this.type == type;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Class<?> getJavaType(int sqlType) {
-        for(Map.Entry<Class<?>, Integer> entry: javaTypeToSqlTypeMap.entrySet()){
-            if(sqlType == entry.getValue().intValue() && !isPrimitive(entry.getKey())){
-                return entry.getKey();
-            }
-        }
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public void registerOutParameter(Class<?> type, CallableStatement cs, int index) throws SQLException {
-        int sqlType = javaTypeToSqlType(type);
-        cs.registerOutParameter(index, sqlType);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    public void registerOutParameter(Class<?> type, CallableStatement cs, String parameterName)
-            throws SQLException {
-        int sqlType = javaTypeToSqlType(type);
-        cs.registerOutParameter(parameterName, sqlType);
+    public void registerOutParameter(Class<?> type, CallableStatement cs, String parameterName) throws SQLException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     protected void setNull(Class<?> type, PreparedStatement stmt, int index) throws SQLException {
-        int sqlType = javaTypeToSqlType(type);
-        stmt.setNull(index, sqlType);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public T getDefaultValue() {
-        return null;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

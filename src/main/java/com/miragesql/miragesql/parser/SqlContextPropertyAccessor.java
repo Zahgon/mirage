@@ -16,7 +16,6 @@
 package com.miragesql.miragesql.parser;
 
 import java.util.Map;
-
 import ognl.ObjectPropertyAccessor;
 import ognl.OgnlException;
 
@@ -31,21 +30,7 @@ public class SqlContextPropertyAccessor extends ObjectPropertyAccessor {
 
     @Override
     @SuppressWarnings("rawtypes")
-    public Object getProperty(Map cx, Object target, Object name)
-            throws OgnlException {
-
-        SqlContext ctx = (SqlContext) target;
-        String argName = name.toString();
-        if (argName.startsWith(HAS_PREFIX)) {
-            return Boolean.valueOf(ctx.hasArg(argName.substring(HAS_PREFIX
-                    .length())));
-        }
-        Object arg = ctx.getArg(argName);
-        if (arg instanceof SqlArgWrapper) {
-            SqlArgWrapper wrapper = (SqlArgWrapper) arg;
-            return wrapper.getValue();
-        }
-        return arg;
+    public Object getProperty(Map cx, Object target, Object name) throws OgnlException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

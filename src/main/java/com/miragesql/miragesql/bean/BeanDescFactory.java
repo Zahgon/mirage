@@ -11,19 +11,21 @@ import java.util.concurrent.ConcurrentHashMap;
 public class BeanDescFactory {
 
     private Map<Class<?>, BeanDesc> cacheMap = new ConcurrentHashMap<>();
+
     private boolean cacheEnabled = false;
+
     private PropertyExtractor propertyExtractor = new DefaultPropertyExtractor();
 
-    public void setCacheEnabled(boolean cacheEnabled){
-        this.cacheEnabled = cacheEnabled;
+    public void setCacheEnabled(boolean cacheEnabled) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    public boolean isCacheEnabled(){
-        return cacheEnabled;
+    public boolean isCacheEnabled() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    public void setPropertyExtractor(PropertyExtractor propertyExtractor){
-        this.propertyExtractor = propertyExtractor;
+    public void setPropertyExtractor(PropertyExtractor propertyExtractor) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -33,12 +35,8 @@ public class BeanDescFactory {
      * @return a descriptor
      */
     @SuppressWarnings("unchecked")
-    public BeanDesc getBeanDesc(Object obj){
-        if(obj instanceof Map){
-            return new MapBeanDescImpl((Map<String, Object>) obj);
-        } else {
-            return getBeanDesc(obj.getClass());
-        }
+    public BeanDesc getBeanDesc(Object obj) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -48,22 +46,7 @@ public class BeanDescFactory {
      *              <code>LinkedHashMap.class</code> no properties can be extracted, so this operations needs to be done later.
      * @return a descriptor
      */
-    public BeanDesc getBeanDesc(Class<?> clazz){
-        if(clazz == Map.class || clazz == HashMap.class || clazz == LinkedHashMap.class){
-            return new MapBeanDescImpl();
-        }
-
-        if(cacheEnabled && cacheMap.containsKey(clazz)){
-            return cacheMap.get(clazz);
-        }
-
-        BeanDesc beanDesc = new BeanDescImpl(clazz, propertyExtractor.extractProperties(clazz));
-
-        if(cacheEnabled){
-            cacheMap.put(clazz, beanDesc);
-        }
-
-        return beanDesc;
+    public BeanDesc getBeanDesc(Class<?> clazz) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

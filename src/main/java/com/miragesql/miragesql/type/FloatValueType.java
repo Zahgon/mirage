@@ -7,51 +7,27 @@ import java.sql.SQLException;
 
 public class FloatValueType extends AbstractValueType<Float> {
 
-
     public FloatValueType() {
         super(Float.class);
     }
 
     public Float get(Class<? extends Float> type, ResultSet rs, int columnIndex) throws SQLException {
-        if(rs.getObject(columnIndex) == null){
-            return null;
-        }
-        return rs.getFloat(columnIndex);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Float get(Class<? extends Float> type, ResultSet rs, String columnName) throws SQLException {
-        if(rs.getObject(columnName) == null){
-            return null;
-        }
-        return rs.getFloat(columnName);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    public void set(Class<? extends Float> type, PreparedStatement stmt, Float value,
-            int index) throws SQLException {
-        if (value == null){
-            setNull(type, stmt, index);
-        } else {
-            stmt.setFloat(index, (Float) value);
-        }
+    public void set(Class<? extends Float> type, PreparedStatement stmt, Float value, int index) throws SQLException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Float get(Class<? extends Float> type, CallableStatement cs, int index) throws SQLException {
-        float value = cs.getFloat(index);
-
-        if (cs.wasNull()) {
-            return null;
-        }
-
-        return value;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Float get(Class<? extends Float> type, CallableStatement cs, String parameterName) throws SQLException {
-        float value = cs.getFloat(parameterName);
-
-        if (cs.wasNull()) {
-            return null;
-        }
-
-        return value;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

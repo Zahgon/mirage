@@ -7,52 +7,32 @@ import java.sql.SQLException;
 
 public class ShortPrimitiveValueType extends AbstractValueType<Short> {
 
-
     public ShortPrimitiveValueType() {
         super(Short.TYPE);
     }
 
     public Short get(Class<? extends Short> type, ResultSet rs, int columnIndex) throws SQLException {
-        return rs.getShort(columnIndex);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Short get(Class<? extends Short> type, ResultSet rs, String columnName) throws SQLException {
-        return rs.getShort(columnName);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    public void set(Class<? extends Short> type, PreparedStatement stmt, Short value,
-            int index) throws SQLException {
-        if (value == null){
-            setNull(type, stmt, index);
-            return;
-        } else {
-            stmt.setShort(index, value);
-        }
+    public void set(Class<? extends Short> type, PreparedStatement stmt, Short value, int index) throws SQLException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Short get(Class<? extends Short> type, CallableStatement cs, int index) throws SQLException {
-        Short value = cs.getShort(index);
-
-        if (value != null && cs.wasNull()) {
-            value = null;
-        }
-
-        return value;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Short get(Class<? extends Short> type, CallableStatement cs, String parameterName) throws SQLException {
-        Short value = cs.getShort(parameterName);
-
-        if (value != null && cs.wasNull()) {
-            value = null;
-        }
-
-        return value;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
-    public Short getDefaultValue(){
-        return 0;
+    public Short getDefaultValue() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

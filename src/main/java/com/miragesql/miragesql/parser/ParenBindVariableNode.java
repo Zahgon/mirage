@@ -18,7 +18,6 @@ package com.miragesql.miragesql.parser;
 import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.LinkedList;
-
 import com.miragesql.miragesql.util.OgnlUtil;
 
 /**
@@ -42,24 +41,12 @@ public class ParenBindVariableNode extends AbstractNode {
      * @return the expression
      */
     public String getExpression() {
-        return expression;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
+    //	@Override
     public void accept(SqlContext ctx) {
-        Object var = OgnlUtil.getValue(parsedExpression, ctx);
-        if (var instanceof Collection) {
-            bindArray(ctx, Collection.class.cast(var).toArray());
-        } else if (var instanceof Iterable) {
-            bindArray(ctx, toArray(Iterable.class.cast(var)));
-        } else if (var == null) {
-            return;
-        } else if (var.getClass().isArray()) {
-            bindArray(ctx, var);
-        } else {
-            ctx.addSql("?", var, var.getClass());
-        }
-
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     private Object[] toArray(Iterable<?> iterable) {
@@ -75,31 +62,11 @@ public class ParenBindVariableNode extends AbstractNode {
      * @param array the variable array
      */
     protected void bindArray(SqlContext ctx, Object array) {
-        int length = Array.getLength(array);
-        if (length == 0) {
-            return;
-        }
-        Class<?> clazz = null;
-        for (int i = 0; i < length; ++i) {
-            Object o = Array.get(array, i);
-            if (o != null) {
-                clazz = o.getClass();
-            }
-        }
-        ctx.addSql("(");
-        Object value = Array.get(array, 0);
-        ctx.addSql("?", value, clazz);
-        for (int i = 1; i < length; ++i) {
-            ctx.addSql(", ");
-            value = Array.get(array, i);
-            ctx.addSql("?", value, clazz);
-        }
-        ctx.addSql(")");
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return "ParenBindVariableNode [expression=" + expression + ", parsedExpression=" + parsedExpression
-                + ", children=" + children + "]";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

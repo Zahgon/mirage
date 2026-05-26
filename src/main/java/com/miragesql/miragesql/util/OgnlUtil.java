@@ -19,7 +19,6 @@ import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Member;
 import java.lang.reflect.Modifier;
 import java.util.Map;
-
 import com.miragesql.miragesql.exception.OgnlRuntimeException;
 import ognl.*;
 
@@ -31,7 +30,9 @@ import ognl.*;
 @SuppressWarnings("rawtypes")
 public class OgnlUtil {
 
-    /** Constructor. */
+    /**
+     * Constructor.
+     */
     protected OgnlUtil() {
     }
 
@@ -46,7 +47,7 @@ public class OgnlUtil {
      * @see #getValue(Object, Map, Object, String, int)
      */
     public static Object getValue(Object exp, Object root) {
-        return getValue(exp, root, null, 0);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -62,7 +63,7 @@ public class OgnlUtil {
      * @see #getValue(Object, Map, Object, String, int)
      */
     public static Object getValue(Object exp, Object root, String path, int lineNumber) {
-        return getValue(exp, null, root, path, lineNumber);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -77,7 +78,7 @@ public class OgnlUtil {
      * @see #getValue(Object, Map, Object, String, int)
      */
     public static Object getValue(Object exp, Map ctx, Object root) {
-        return getValue(exp, ctx, root, null, 0);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -94,15 +95,7 @@ public class OgnlUtil {
      * @throws OgnlRuntimeException when a {@link ognl.OgnlException} occurs
      */
     public static Object getValue(Object exp, Map ctx, Object root, String path, int lineNumber) {
-        try {
-            OgnlContext context = new OgnlContext(null, null, new DefaultMemberAccess(true));
-            return Ognl.getValue(exp, context, root);
-        } catch (OgnlException ex) {
-            throw new OgnlRuntimeException(ex.getReason() == null ? ex : ex
-                    .getReason(), path, lineNumber);
-        } catch (Exception ex) {
-            throw new OgnlRuntimeException(ex, path, lineNumber);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -115,7 +108,7 @@ public class OgnlUtil {
      * @see #parseExpression(String, String, int)
      */
     public static Object parseExpression(String expression) {
-        return parseExpression(expression, null, 0);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -130,29 +123,26 @@ public class OgnlUtil {
      * @throws OgnlRuntimeException when a {@link ognl.OgnlException} occurs
      */
     public static Object parseExpression(String expression, String path, int lineNumber) {
-        try {
-            return Ognl.parseExpression(expression);
-        } catch (Exception ex) {
-            throw new OgnlRuntimeException(ex, path, lineNumber);
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public static class DefaultMemberAccess implements MemberAccess {
 
         private boolean allowPrivateAccess = false;
+
         private boolean allowProtectedAccess = false;
+
         private boolean allowPackageProtectedAccess = false;
 
         /*
          * =================================================================== Constructors
          * ===================================================================
          */
-        public DefaultMemberAccess( boolean allowAllAccess ){
-            this( allowAllAccess, allowAllAccess, allowAllAccess );
+        public DefaultMemberAccess(boolean allowAllAccess) {
+            this(allowAllAccess, allowAllAccess, allowAllAccess);
         }
 
-        public DefaultMemberAccess( boolean allowPrivateAccess, boolean allowProtectedAccess,
-                                    boolean allowPackageProtectedAccess ){
+        public DefaultMemberAccess(boolean allowPrivateAccess, boolean allowProtectedAccess, boolean allowPackageProtectedAccess) {
             super();
             this.allowPrivateAccess = allowPrivateAccess;
             this.allowProtectedAccess = allowProtectedAccess;
@@ -163,69 +153,43 @@ public class OgnlUtil {
          * =================================================================== Public methods
          * ===================================================================
          */
-        public boolean getAllowPrivateAccess(){
-            return allowPrivateAccess;
+        public boolean getAllowPrivateAccess() {
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        public void setAllowPrivateAccess( boolean value ){
-            allowPrivateAccess = value;
+        public void setAllowPrivateAccess(boolean value) {
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public boolean getAllowProtectedAccess() {
-            return allowProtectedAccess;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        public void setAllowProtectedAccess( boolean value ) {
-            allowProtectedAccess = value;
+        public void setAllowProtectedAccess(boolean value) {
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         public boolean getAllowPackageProtectedAccess() {
-            return allowPackageProtectedAccess;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
-        public void setAllowPackageProtectedAccess( boolean value ) {
-            allowPackageProtectedAccess = value;
+        public void setAllowPackageProtectedAccess(boolean value) {
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public Object setup(Map context, Object target, Member member, String propertyName) {
-            Object result = null;
-
-            if ( isAccessible( context, target, member, propertyName ) ) {
-                AccessibleObject accessible = (AccessibleObject) member;
-
-                if ( !accessible.isAccessible() ) {
-                    result = Boolean.TRUE;
-                    accessible.setAccessible( true );
-                }
-            }
-            return result;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public void restore(Map context, Object target, Member member, String propertyName, Object state) {
-            if ( state != null ) {
-                ( (AccessibleObject) member ).setAccessible( (Boolean) state );
-            }
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
 
         @Override
         public boolean isAccessible(Map context, Object target, Member member, String propertyName) {
-            int modifiers = member.getModifiers();
-            boolean result = Modifier.isPublic( modifiers );
-
-            if ( !result ) {
-                if ( Modifier.isPrivate( modifiers ) ) {
-                    result = getAllowPrivateAccess();
-                } else {
-                    if ( Modifier.isProtected( modifiers ) ) {
-                        result = getAllowProtectedAccess();
-                    } else {
-                        result = getAllowPackageProtectedAccess();
-                    }
-                }
-            }
-            return result;
+            throw new UnsupportedOperationException("STUB: not implemented");
         }
     }
 }

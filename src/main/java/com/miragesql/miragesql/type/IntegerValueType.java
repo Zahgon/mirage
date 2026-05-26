@@ -12,45 +12,22 @@ public class IntegerValueType extends AbstractValueType<Integer> {
     }
 
     public Integer get(Class<? extends Integer> type, ResultSet rs, int columnIndex) throws SQLException {
-        if(rs.getObject(columnIndex) == null){
-            return null;
-        }
-        return rs.getInt(columnIndex);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Integer get(Class<? extends Integer> type, ResultSet rs, String columnName) throws SQLException {
-        if(rs.getObject(columnName) == null){
-            return null;
-        }
-        return rs.getInt(columnName);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    public void set(Class<? extends Integer> type, PreparedStatement stmt, Integer value,
-            int index) throws SQLException {
-        if (value == null){
-            setNull(type, stmt, index);
-        } else {
-            stmt.setInt(index, value);
-        }
+    public void set(Class<? extends Integer> type, PreparedStatement stmt, Integer value, int index) throws SQLException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Integer get(Class<? extends Integer> type, CallableStatement cs, int index) throws SQLException {
-        int value = cs.getInt(index);
-
-        if (cs.wasNull()) {
-           return null;
-        }
-
-        return value;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Integer get(Class<? extends Integer> type, CallableStatement cs, String parameterName) throws SQLException {
-        int value = cs.getInt(parameterName);
-
-        if (cs.wasNull()) {
-            return null;
-        }
-
-        return value;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

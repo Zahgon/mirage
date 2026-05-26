@@ -8,37 +8,43 @@ public class OracleDialect extends StandardDialect {
 
     private OracleResultSetValueType valueType = new OracleResultSetValueType();
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getName() {
-        return "oracle";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean needsParameterForResultSet() {
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ValueType<?> getValueType() {
-        return valueType;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getSequenceSql(String sequenceName) {
-        return String.format("SELECT %s.NEXTVAL FROM DUAL", sequenceName);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    /**{@inheritDoc}*/
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean supportsGenerationType(GenerationType generationType) {
-        if(generationType == GenerationType.IDENTITY){
-            return false;
-        }
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -25,24 +25,26 @@ import java.util.List;
  */
 public abstract class AbstractNode implements Node {
 
-    /** List with child nodes.*/
+    /**
+     * List with child nodes.
+     */
     List<Node> children = new ArrayList<>();
 
     public AbstractNode() {
     }
 
-//	@Override
+    //	@Override
     public int getChildSize() {
-        return children.size();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
+    //	@Override
     public Node getChild(int index) {
-        return children.get(index);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
+    //	@Override
     public void addChild(Node node) {
-        children.add(node);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

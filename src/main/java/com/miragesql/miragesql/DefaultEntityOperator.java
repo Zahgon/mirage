@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.miragesql.miragesql.annotation.Column;
 import com.miragesql.miragesql.annotation.PrimaryKey;
 import com.miragesql.miragesql.bean.BeanDesc;
@@ -42,130 +41,16 @@ public class DefaultEntityOperator implements EntityOperator {
      *
      * @throws EntityCreationFailedException if {@link EntityOperator} failed to create a result entity
      */
-    @SuppressWarnings({"unchecked", "rawtypes"})
-    public <T> T createEntity(Class<T> entityType, ResultSet rs,
-            ResultSetMetaData meta, int columnCount, BeanDesc beanDesc,
-            Dialect dialect, List<ValueType<?>> valueTypes, NameConverter nameConverter) {
-
-        try {
-            {
-                ValueType valueType = MirageUtil.getValueType(entityType, null, dialect, valueTypes);
-                if(valueType != null){
-                    return (T) ((ValueType<T>) valueType).get(entityType, rs, 1);
-                }
-            }
-
-            T entity = null;
-
-            if(entityType == Map.class || entityType == HashMap.class){
-                entity = (T) new HashMap<String, Object>();
-            } else if(entityType == LinkedHashMap.class){
-                entity = (T) new LinkedHashMap<String, Object>();
-            } else {
-                Constructor<T>[] constructors = (Constructor<T>[]) entityType.getDeclaredConstructors();
-                for(Constructor<T> constructor: constructors){
-                    try {
-                        constructor.setAccessible(true);
-                        Class<?>[] types = constructor.getParameterTypes();
-                        Object[] params = new Object[types.length];
-                        for(int i = 0; i < params.length; i++){
-                            ValueType valueType = MirageUtil.getValueType(types[i], null, dialect, valueTypes);
-                            if(valueType != null){
-                                params[i] = valueType.getDefaultValue();
-                            }
-                        }
-                        entity = constructor.newInstance(params);
-                    } catch (InstantiationException | IllegalArgumentException | IllegalAccessException | InvocationTargetException e) {
-                        // ignore
-                    }
-                }
-            }
-            if(entity == null) {
-                throw new EntityCreationFailedException();
-            }
-
-            for(int i = 0; i < columnCount; i++){
-                String columnLabel = meta.getColumnLabel(i + 1);
-                String columnName = meta.getColumnName(i + 1);
-                PropertyDesc pd = null;
-
-                for(int j = 0; j < beanDesc.getPropertyDescSize(); j++){
-                    PropertyDesc property = beanDesc.getPropertyDesc(j);
-                    Column column = property.getAnnotation(Column.class);
-                    if(column != null && columnLabel.equalsIgnoreCase(column.name())){
-                        pd = property;
-                        break;
-                    }
-                }
-
-                if(pd == null){
-                    for(int j = 0; j < beanDesc.getPropertyDescSize(); j++){
-                        PropertyDesc property = beanDesc.getPropertyDesc(j);
-                        Column column = property.getAnnotation(Column.class);
-                        if(column != null && columnName.equalsIgnoreCase(column.name())){
-                            pd = property;
-                            break;
-                        }
-                    }
-                }
-
-                if(pd == null){
-                    String propertyName = nameConverter.columnToProperty(columnLabel);
-                    pd = beanDesc.getPropertyDesc(propertyName);
-                }
-
-                if(pd == null){
-                    String propertyName = nameConverter.columnToProperty(columnName);
-                    pd = beanDesc.getPropertyDesc(propertyName);
-                }
-
-                if(pd != null){
-                    Class<?> propertyType = pd.getPropertyType();
-                    ValueType valueType = MirageUtil.getValueType(propertyType, pd, dialect, valueTypes);
-                    if(valueType != null){
-                        pd.setValue(entity, valueType.get(propertyType, rs, columnLabel));
-                    } else {
-                        if (logger.isDebugEnabled()) {
-                            logger.debug(String.format("column [%s] is ignored because property [%s]'s type is not supported: %s",
-                                    columnLabel, pd.getPropertyName(), propertyType.getName()));
-                        }
-                    }
-                } else {
-                    if (logger.isDebugEnabled()) {
-                        logger.debug(String.format("column [%s] is ignored because property is not found in the bean",
-                                columnLabel));
-                    }
-                }
-            }
-
-            return entity;
-        } catch (SQLException | SecurityException | IllegalArgumentException e) {
-            throw new EntityCreationFailedException(e);
-        }
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public <T> T createEntity(Class<T> entityType, ResultSet rs, ResultSetMetaData meta, int columnCount, BeanDesc beanDesc, Dialect dialect, List<ValueType<?>> valueTypes, NameConverter nameConverter) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public PrimaryKeyInfo getPrimaryKeyInfo(Class<?> clazz, PropertyDesc propertyDesc, NameConverter nameConverter) {
-        // note: for Maps, the default PK is the "ID" key as a convention.
-        String name = propertyDesc.getPropertyName();
-        if(clazz == Map.class || clazz == HashMap.class || clazz == LinkedHashMap.class) {
-            if("id".equalsIgnoreCase(name)) {
-                return new PrimaryKeyInfo(PrimaryKey.GenerationType.IDENTITY);
-            }
-            return null;
-        }
-
-        PrimaryKey primaryKey = propertyDesc.getAnnotation(PrimaryKey.class);
-        if(primaryKey == null){
-            return null;
-        }
-        return new PrimaryKeyInfo(primaryKey.generationType(), primaryKey.generator());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public ColumnInfo getColumnInfo(Class<?> clazz, PropertyDesc propertyDesc, NameConverter nameConverter) {
-        Column column = propertyDesc.getAnnotation(Column.class);
-        if(column == null){
-            return null;
-        }
-        return new ColumnInfo(column.name());
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

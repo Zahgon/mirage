@@ -16,6 +16,6 @@ public class SQLRuntimeException extends RuntimeException {
 
     @Override
     public SQLException getCause() {
-        return (SQLException) super.getCause();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

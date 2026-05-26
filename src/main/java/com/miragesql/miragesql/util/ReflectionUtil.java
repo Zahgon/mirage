@@ -5,29 +5,15 @@ import java.lang.reflect.Type;
 
 public class ReflectionUtil {
 
-    public static Field getField(Class<?> clazz, String name){
-        while(clazz != Object.class){
-            try {
-                Field field = clazz.getDeclaredField(name);
-                if(field != null){
-                    return field;
-                }
-            } catch(Exception ex){
-                // ignore
-            }
-            clazz = clazz.getSuperclass();
-        }
-        return null;
+    public static Field getField(Class<?> clazz, String name) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public static Class<?> getElementTypeOfList(final Type parameterizedList) {
-        return GenericUtil.getRawClass(GenericUtil
-                .getElementTypeOfList(parameterizedList));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public static Class<?> getElementTypeOfListFromFieldType(final Field field) {
-        final Type type = field.getGenericType();
-        return getElementTypeOfList(type);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

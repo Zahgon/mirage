@@ -2,10 +2,8 @@ package com.miragesql.miragesql.updater;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.miragesql.miragesql.SqlManager;
 import com.miragesql.miragesql.SqlManagerImpl;
 import com.miragesql.miragesql.StringSqlResource;
@@ -53,8 +51,8 @@ public class SchemaUpdater {
      *
      * @param sqlManager the SqlManager
      */
-    public void setSqlManager(SqlManager sqlManager){
-        this.sqlManager = sqlManager;
+    public void setSqlManager(SqlManager sqlManager) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -62,8 +60,8 @@ public class SchemaUpdater {
      *
      * @param tableName the table name
      */
-    public void setTableName(String tableName){
-        this.tableName = tableName;
+    public void setTableName(String tableName) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -71,8 +69,8 @@ public class SchemaUpdater {
      *
      * @param packageName the package name
      */
-    public void setPackageName(String packageName){
-        this.packageName = packageName;
+    public void setPackageName(String packageName) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -80,31 +78,8 @@ public class SchemaUpdater {
      * <p>
      * Note: Before calling this method, Connection might have to be auto-commit mode.
      */
-    public void update(){
-        logger.info("Begin automatic schema updating.");
-        if(!existsTable()){
-            createTable();
-        }
-
-        int currentVersion = getCurrentVersion();
-        int version = currentVersion;
-        String sql = null;
-
-        while((sql = getSql(version + 1)) != null){
-            if(sql.trim().length() != 0){
-                sqlManager.executeUpdate(new StringSqlResource(sql));
-            }
-            version++;
-        }
-
-        if(version != currentVersion){
-            updateVersion(version);
-            logger.info(String.format("Schema was updated to version %d.", version));
-        } else {
-            logger.info("There are no updates.");
-        }
-
-        logger.info("End automatic schema updating.");
+    public void update() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -114,57 +89,24 @@ public class SchemaUpdater {
      * @param version the version number
      * @return SQL or null if the SQL file does not exist
      */
-    protected String getSql(int version){
-        Dialect dialect = ((SqlManagerImpl) sqlManager).getDialect();
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        InputStream in = classLoader.getResourceAsStream(
-                String.format("%s/%s_%d.sql", packageName, dialect.getName().toLowerCase(), version));
-
-        if(in == null){
-            in = classLoader.getResourceAsStream(
-                    String.format("%s/%d.sql", packageName, version));
-
-            if(in == null){
-                return null;
-            }
-        }
-
-        byte[] buf = IOUtil.readStream(in);
-	
-		return new String(buf, StandardCharsets.UTF_8);
-	
-	}
+    protected String getSql(int version) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
     /**
      * Checks the table which manages a schema version exists or not exists.
      *
      * @return if the table exists then returns true; otherwise false
      */
-    protected boolean existsTable(){
-        try {
-            int count = sqlManager.getSingleResult(Integer.class,
-                    new StringSqlResource(String.format("SELECT COUNT(*) FROM %s", tableName)));
-
-            if(count == 0){
-                // TODO Should insert an initial record?
-                return false;
-            }
-            return true;
-
-        } catch(SQLRuntimeException ex){
-            return false;
-        }
+    protected boolean existsTable() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * Creates table which manages schema version and insert an initial record as version 0.
      */
-    protected void createTable(){
-        sqlManager.executeUpdate(
-                new StringSqlResource(String.format("CREATE TABLE %s (VERSION NUMERIC NOT NULL)", tableName)));
-
-        sqlManager.executeUpdate(
-                new StringSqlResource(String.format("INSERT INTO %s (0))", tableName)));
+    protected void createTable() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -172,9 +114,8 @@ public class SchemaUpdater {
      *
      * @return the current version number
      */
-    protected int getCurrentVersion(){
-        return sqlManager.getSingleResult(Integer.class,
-                new StringSqlResource(String.format("SELECT COUNT(*) FROM %s", tableName)));
+    protected int getCurrentVersion() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -182,9 +123,7 @@ public class SchemaUpdater {
      *
      * @param version the version number
      */
-    protected void updateVersion(int version){
-        sqlManager.executeUpdate(
-                new StringSqlResource(String.format("UPDATE %s SET VERSION=?", tableName)), version);
+    protected void updateVersion(int version) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

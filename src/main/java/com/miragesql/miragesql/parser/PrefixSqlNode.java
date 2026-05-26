@@ -41,26 +41,23 @@ public class PrefixSqlNode extends AbstractNode {
      * @return the prefix
      */
     public String getPrefix() {
-        return prefix;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
      * @return the SQL
      */
     public String getSql() {
-        return sql;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
+    //	@Override
     public void accept(SqlContext ctx) {
-        if (ctx.isEnabled()) {
-            ctx.addSql(prefix);
-        }
-        ctx.addSql(sql);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return "PrefixSqlNode [prefix=" + prefix + ", sql=" + sql + ", children=" + children + "]";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

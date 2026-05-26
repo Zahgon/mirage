@@ -18,7 +18,6 @@ package com.miragesql.miragesql.parser;
 import com.miragesql.miragesql.exception.TwoWaySQLException;
 import com.miragesql.miragesql.util.OgnlUtil;
 
-
 /**
  * {@link Node} representing an <code>IF</code> comment.
  *
@@ -46,7 +45,7 @@ public class IfNode extends ContainerNode {
      * @return the IF Expression
      */
     public String getExpression() {
-        return expression;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -55,7 +54,7 @@ public class IfNode extends ContainerNode {
      * @return the ElseNode
      */
     public ElseNode getElseNode() {
-        return elseNode;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -64,29 +63,16 @@ public class IfNode extends ContainerNode {
      * @param elseNode the ElseNode
      */
     public void setElseNode(ElseNode elseNode) {
-        this.elseNode = elseNode;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public void accept(SqlContext ctx) {
-        Object result = OgnlUtil.getValue(parsedExpression, ctx);
-        if (result instanceof Boolean) {
-            if (((Boolean) result).booleanValue()) {
-                super.accept(ctx);
-                ctx.setEnabled(true);
-            } else if (elseNode != null) {
-                elseNode.accept(ctx);
-                ctx.setEnabled(true);
-            }
-        } else {
-            throw new TwoWaySQLException(String.format(
-                "%s is not bool expression.", expression));
-        }
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return "IfNode [expression=" + expression + ", parsedExpression=" + parsedExpression + ", elseNode=" + elseNode
-                +", children=" + children + "]";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

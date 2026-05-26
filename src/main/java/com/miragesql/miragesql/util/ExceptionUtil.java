@@ -11,13 +11,7 @@ public class ExceptionUtil {
      * @param ex the exception
      * @return stacktrace
      */
-    public static String toString(Exception ex){
-        StringWriter writer = new StringWriter();
-        PrintWriter pw = new PrintWriter(writer);
-
-        ex.printStackTrace(pw);
-
-        return writer.toString();
+    public static String toString(Exception ex) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

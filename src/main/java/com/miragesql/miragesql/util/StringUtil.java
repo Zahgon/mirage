@@ -23,7 +23,6 @@ import java.util.StringTokenizer;
  * {@link String}用のユーティリティクラスです。
  *
  * @author higa
- *
  */
 public class StringUtil {
 
@@ -33,7 +32,6 @@ public class StringUtil {
     public static final String[] EMPTY_STRINGS = new String[0];
 
     /**
-     *
      */
     protected StringUtil() {
     }
@@ -46,7 +44,7 @@ public class StringUtil {
      * @return 文字列が<code>null</code>または空文字列なら<code>true</code>
      */
     public static final boolean isEmpty(final String text) {
-        return text == null || text.length() == 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -58,7 +56,7 @@ public class StringUtil {
      * @since 2.4.33
      */
     public static final boolean isNotEmpty(final String text) {
-        return !isEmpty(text);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -72,29 +70,8 @@ public class StringUtil {
      *            置き換えるテキスト
      * @return 結果
      */
-    public static final String replace(final String text,
-            final String fromText, final String toText) {
-
-        if (text == null || fromText == null || toText == null) {
-            return null;
-        }
-        StringBuffer buf = new StringBuffer(100);
-        int pos2 = 0;
-        while (true) {
-            int pos = text.indexOf(fromText, pos2);
-            if (pos == 0) {
-                buf.append(toText);
-                pos2 = fromText.length();
-            } else if (pos > 0) {
-                buf.append(text, pos2, pos);
-                buf.append(toText);
-                pos2 = pos + fromText.length();
-            } else {
-                buf.append(text.substring(pos2));
-                break;
-            }
-        }
-        return buf.toString();
+    public static final String replace(final String text, final String fromText, final String toText) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -107,15 +84,7 @@ public class StringUtil {
      * @return 分割された文字列の配列
      */
     public static String[] split(final String str, final String delim) {
-        if (isEmpty(str)) {
-            return EMPTY_STRINGS;
-        }
-        List<String> list = new ArrayList<String>();
-        StringTokenizer st = new StringTokenizer(str, delim);
-        while (st.hasMoreElements()) {
-            list.add((String) st.nextElement());
-        }
-        return list.toArray(new String[list.size()]);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -126,7 +95,7 @@ public class StringUtil {
      * @return 結果の文字列
      */
     public static final String ltrim(final String text) {
-        return ltrim(text, null);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -139,19 +108,7 @@ public class StringUtil {
      * @return 結果の文字列
      */
     public static final String ltrim(final String text, String trimText) {
-        if (text == null) {
-            return null;
-        }
-        if (trimText == null) {
-            trimText = " ";
-        }
-        int pos = 0;
-        for (; pos < text.length(); pos++) {
-            if (trimText.indexOf(text.charAt(pos)) < 0) {
-                break;
-            }
-        }
-        return text.substring(pos);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -162,7 +119,7 @@ public class StringUtil {
      * @return 結果の文字列
      */
     public static final String rtrim(final String text) {
-        return rtrim(text, null);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -175,19 +132,7 @@ public class StringUtil {
      * @return 結果の文字列
      */
     public static final String rtrim(final String text, String trimText) {
-        if (text == null) {
-            return null;
-        }
-        if (trimText == null) {
-            trimText = " ";
-        }
-        int pos = text.length() - 1;
-        for (; pos >= 0; pos--) {
-            if (trimText.indexOf(text.charAt(pos)) < 0) {
-                break;
-            }
-        }
-        return text.substring(0, pos + 1);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -200,16 +145,7 @@ public class StringUtil {
      * @return 結果の文字列
      */
     public static final String trimSuffix(final String text, final String suffix) {
-        if (text == null) {
-            return null;
-        }
-        if (suffix == null) {
-            return text;
-        }
-        if (text.endsWith(suffix)) {
-            return text.substring(0, text.length() - suffix.length());
-        }
-        return text;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -222,16 +158,7 @@ public class StringUtil {
      * @return 結果の文字列
      */
     public static final String trimPrefix(final String text, final String prefix) {
-        if (text == null) {
-            return null;
-        }
-        if (prefix == null) {
-            return text;
-        }
-        if (text.startsWith(prefix)) {
-            return text.substring(prefix.length());
-        }
-        return text;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -242,16 +169,7 @@ public class StringUtil {
      * @return 結果の文字列
      */
     public static String decapitalize(final String name) {
-        if (isEmpty(name)) {
-            return name;
-        }
-        char chars[] = name.toCharArray();
-        if (chars.length >= 2 && Character.isUpperCase(chars[0])
-                && Character.isUpperCase(chars[1])) {
-            return name;
-        }
-        chars[0] = Character.toLowerCase(chars[0]);
-        return new String(chars);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -262,12 +180,7 @@ public class StringUtil {
      * @return 結果の文字列
      */
     public static String capitalize(final String name) {
-        if (isEmpty(name)) {
-            return name;
-        }
-        char chars[] = name.toCharArray();
-        chars[0] = Character.toUpperCase(chars[0]);
-        return new String(chars);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -278,15 +191,7 @@ public class StringUtil {
      * @return ブランクかどうか
      */
     public static boolean isBlank(final String str) {
-        if (str == null || str.length() == 0) {
-            return true;
-        }
-        for (int i = 0; i < str.length(); i++) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -298,7 +203,7 @@ public class StringUtil {
      * @see #isBlank(String)
      */
     public static boolean isNotBlank(final String str) {
-        return !isBlank(str);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -311,10 +216,7 @@ public class StringUtil {
      * @return charを含んでいるかどうか
      */
     public static boolean contains(final String str, final char ch) {
-        if (isEmpty(str)) {
-            return false;
-        }
-        return str.indexOf(ch) >= 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -327,10 +229,7 @@ public class StringUtil {
      * @return 文字列を含んでいるかどうか
      */
     public static boolean contains(final String s1, final String s2) {
-        if (isEmpty(s1)) {
-            return false;
-        }
-        return s1.indexOf(s2) >= 0;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -343,7 +242,7 @@ public class StringUtil {
      * @return 文字列同士が等しいかどうか
      */
     public static boolean equals(final String target1, final String target2) {
-        return (target1 == null) ? (target2 == null) : target1.equals(target2);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -355,10 +254,8 @@ public class StringUtil {
      *            文字列2
      * @return ケースインセンシティブで文字列同士が等しいか
      */
-    public static boolean equalsIgnoreCase(final String target1,
-            final String target2) {
-        return (target1 == null) ? (target2 == null) : target1
-                .equalsIgnoreCase(target2);
+    public static boolean equalsIgnoreCase(final String target1, final String target2) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -370,18 +267,8 @@ public class StringUtil {
      *            比較する文字列
      * @return ケースインセンシティブで特定の文字で終わっているのかどうか
      */
-    public static boolean endsWithIgnoreCase(final String target1,
-            final String target2) {
-        if (target1 == null || target2 == null) {
-            return false;
-        }
-        int length1 = target1.length();
-        int length2 = target2.length();
-        if (length1 < length2) {
-            return false;
-        }
-        String s1 = target1.substring(length1 - length2);
-        return s1.equalsIgnoreCase(target2);
+    public static boolean endsWithIgnoreCase(final String target1, final String target2) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -393,18 +280,8 @@ public class StringUtil {
      *            比較する文字列
      * @return ケースインセンシティブで特定の文字ではじまっているのかどうか
      */
-    public static boolean startsWithIgnoreCase(final String target1,
-            final String target2) {
-        if (target1 == null || target2 == null) {
-            return false;
-        }
-        int length1 = target1.length();
-        int length2 = target2.length();
-        if (length1 < length2) {
-            return false;
-        }
-        String s1 = target1.substring(0, target2.length());
-        return s1.equalsIgnoreCase(target2);
+    public static boolean startsWithIgnoreCase(final String target1, final String target2) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -416,16 +293,8 @@ public class StringUtil {
      *            セパレータ
      * @return 結果の文字列
      */
-    public static String substringFromLast(final String str,
-            final String separator) {
-        if (isEmpty(str) || isEmpty(separator)) {
-            return str;
-        }
-        int pos = str.lastIndexOf(separator);
-        if (pos == -1) {
-            return str;
-        }
-        return str.substring(0, pos);
+    public static String substringFromLast(final String str, final String separator) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -437,16 +306,8 @@ public class StringUtil {
      *            セパレータ
      * @return 結果の文字列
      */
-    public static String substringToLast(final String str,
-            final String separator) {
-        if (isEmpty(str) || isEmpty(separator)) {
-            return str;
-        }
-        int pos = str.lastIndexOf(separator);
-        if (pos == -1) {
-            return str;
-        }
-        return str.substring(pos + 1, str.length());
+    public static String substringToLast(final String str, final String separator) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -457,14 +318,7 @@ public class StringUtil {
      * @return 16進数の文字列
      */
     public static String toHex(final byte[] bytes) {
-        if (bytes == null) {
-            return "";
-        }
-        StringBuffer sb = new StringBuffer(bytes.length * 2);
-        for (byte b : bytes) {
-            appendHex(sb, b);
-        }
-        return sb.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -475,9 +329,7 @@ public class StringUtil {
      * @return 16進数の文字列
      */
     public static String toHex(final int i) {
-        StringBuffer buf = new StringBuffer();
-        appendHex(buf, i);
-        return buf.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -489,8 +341,7 @@ public class StringUtil {
      *            数値
      */
     public static void appendHex(final StringBuffer buf, final byte i) {
-        buf.append(Character.forDigit((i & 0xf0) >> 4, 16));
-        buf.append(Character.forDigit((i & 0x0f), 16));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -502,10 +353,7 @@ public class StringUtil {
      *            数値
      */
     public static void appendHex(final StringBuffer buf, final int i) {
-        buf.append(Integer.toHexString((i >> 24) & 0xff));
-        buf.append(Integer.toHexString((i >> 16) & 0xff));
-        buf.append(Integer.toHexString((i >> 8) & 0xff));
-        buf.append(Integer.toHexString(i & 0xff));
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -516,19 +364,7 @@ public class StringUtil {
      * @return 結果の文字列
      */
     public static String camelize(String s) {
-        if (s == null) {
-            return null;
-        }
-        s = s.toLowerCase();
-        String[] array = StringUtil.split(s, "_");
-        if (array.length == 1) {
-            return StringUtil.capitalize(s);
-        }
-        StringBuffer buf = new StringBuffer(40);
-        for (String string : array) {
-            buf.append(StringUtil.capitalize(string));
-        }
-        return buf.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -539,28 +375,7 @@ public class StringUtil {
      * @return 結果の文字列
      */
     public static String decamelize(final String s) {
-        if (s == null) {
-            return null;
-        }
-        if (s.length() == 1) {
-            return s.toUpperCase();
-        }
-        StringBuffer buf = new StringBuffer(40);
-        int pos = 0;
-        for (int i = 1; i < s.length(); ++i) {
-            if (Character.isUpperCase(s.charAt(i))) {
-                if (buf.length() != 0) {
-                    buf.append('_');
-                }
-                buf.append(s.substring(pos, i).toUpperCase());
-                pos = i;
-            }
-        }
-        if (buf.length() != 0) {
-            buf.append('_');
-        }
-        buf.append(s.substring(pos, s.length()).toUpperCase());
-        return buf.toString();
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     /**
@@ -571,18 +386,6 @@ public class StringUtil {
      * @return 数値のみで構成されている場合、<code>true</code>
      */
     public static boolean isNumber(final String s) {
-        if (s == null || s.length() == 0) {
-            return false;
-        }
-
-        int size = s.length();
-        for (int i = 0; i < size; i++) {
-            char chr = s.charAt(i);
-            if (chr < '0' || '9' < chr) {
-                return false;
-            }
-        }
-
-        return true;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }

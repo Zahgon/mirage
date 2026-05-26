@@ -7,52 +7,32 @@ import java.sql.SQLException;
 
 public class LongPrimitiveValueType extends AbstractValueType<Long> {
 
-
     public LongPrimitiveValueType() {
         super(Long.TYPE);
     }
 
     public Long get(Class<? extends Long> type, ResultSet rs, int columnIndex) throws SQLException {
-        return rs.getLong(columnIndex);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Long get(Class<? extends Long> type, ResultSet rs, String columnName) throws SQLException {
-        return rs.getLong(columnName);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    public void set(Class<? extends Long> type, PreparedStatement stmt, Long value,
-            int index) throws SQLException {
-        if (value == null){
-            setNull(type, stmt, index);
-            return;
-        } else {
-            stmt.setLong(index, value);
-        }
+    public void set(Class<? extends Long> type, PreparedStatement stmt, Long value, int index) throws SQLException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Long get(Class<? extends Long> type, CallableStatement cs, int index) throws SQLException {
-        long value = cs.getLong(index);
-
-        if (cs.wasNull()) {
-            return null;
-        }
-
-        return value;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     public Long get(Class<? extends Long> type, CallableStatement cs, String parameterName) throws SQLException {
-        long value = cs.getLong(parameterName);
-
-        if (cs.wasNull()) {
-            return null;
-        }
-
-        return value;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
-    public Long getDefaultValue(){
-        return 0L;
+    public Long getDefaultValue() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
 }

@@ -12,3 +12,7 @@ out
 .project
 .gradletasknamecache
 gradle-app.setting
+.aider*
+logs/
+.commit0_scripts/
+.github/workflows/

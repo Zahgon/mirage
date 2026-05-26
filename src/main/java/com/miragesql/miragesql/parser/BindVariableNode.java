@@ -16,7 +16,6 @@
 package com.miragesql.miragesql.parser;
 
 import java.util.Arrays;
-
 import com.miragesql.miragesql.bean.BeanDesc;
 import com.miragesql.miragesql.bean.BeanDescFactory;
 import com.miragesql.miragesql.bean.PropertyDesc;
@@ -51,28 +50,16 @@ public class BindVariableNode extends AbstractNode {
      * @return the bind expression
      */
     public String getExpression() {
-        return expression;
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-//	@Override
+    //	@Override
     public void accept(SqlContext ctx) {
-        Object value = ctx.getArg(names[0]);
-        Class<?> clazz = ctx.getArgType(names[0]);
-        for (int pos = 1; pos < names.length; pos++) {
-            BeanDesc beanDesc = beanDescFactory.getBeanDesc(clazz);
-            PropertyDesc pd = beanDesc.getPropertyDesc(names[pos]);
-            if (value == null) {
-                break;
-            }
-            value = pd.getValue(value);
-            clazz = pd.getPropertyType();
-        }
-        ctx.addSql("?", value, clazz);
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
     @Override
     public String toString() {
-        return "BindVariableNode [expression=" + expression + ", names=" + Arrays.toString(names)
-                + ", children=" + children + "]";
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 }
